@@ -1,4 +1,4 @@
-import { parseDate } from "./misc";
+import { parseDate } from "./utils";
 
 export function sort(type: string, $root: JQuery<HTMLElement>) {
   const $items = $root.children(".albumBlock");

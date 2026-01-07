@@ -1,18 +1,14 @@
-import "./utils/jquery.dom";
+import "./dom/plugins";
 
-import { Essential } from "./core/essential";
-import { Album } from "./core/album";
-import { Artist } from "./core/artist";
+import { Composer } from "./core/composer";
 
-(async () => {
-  (() => {
-    const body = document.querySelector(`body`);
-    body?.classList.add("aotified");
-  })();
+import { Global } from "./modules/global";
+import { Album } from "./modules/album";
+import { Artist } from "./modules/artist";
+import { User } from "./modules/user";
 
-  await Artist();
-  await Album();
-  await Essential();
+// import { Images } from "./modules/images";
 
-  console.log("[aotified] initialized");
-})();
+const composer = new Composer([Global(), Album(), Artist(), User()]);
+
+composer.start();
