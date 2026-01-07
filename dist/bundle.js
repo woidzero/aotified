@@ -493,10 +493,9 @@
       description: "Albums related settings."
     });
     const ALBUM_ID = location.pathname.match(/album\/(\d+)-/)?.[1];
-    if (!ALBUM_ID) {
-      return module;
+    if (ALBUM_ID) {
+      $("#centerContent").addClass("album");
     }
-    $("#centerContent").addClass("album");
     module.loadFeatures([
       new Feature({
         name: "Fix Ratings",
@@ -505,7 +504,7 @@
         hidden: true,
         run: (ctx) => {
           ctx.logger.log(`enabled`);
-          return Observer(
+          Observer(
             ".albumCriticScoreBox, .albumUserScoreBox",
             function() {
               const $box = $(this);
@@ -593,7 +592,6 @@
               const $root = $(this);
               const count = $root.find(".albumBlock").length;
               $root.addClass("releaseBlock").addClass(`count-${count}`);
-              return;
             }
           );
           Observer(
@@ -607,7 +605,6 @@
                 if ($root.find(".sectionHeading").length) return;
                 $("<div>", { class: "releaseBlock large" }).insertBefore($albums.first()).append($albums);
               });
-              return;
             },
             { once: true }
           );
@@ -615,7 +612,6 @@
             "#homeNewReleases .albumBlock, #albumOutput .albumBlock",
             function() {
               $(this).addClass("slim");
-              return;
             }
           );
           Observer(".ratingRow", function() {
@@ -623,13 +619,11 @@
             const $texts = $(this).children(".ratingText");
             if ($texts.length < 2) return;
             $("<div/>", { class: "ratingTextWrapper" }).append($texts).appendTo(this);
-            return;
           });
           Observer("section", function() {
             if ($(this).find('.sectionHeading h2 a[href="/recently-added/"]').length) {
               $(this).attr("id", "recentlyAdded");
             }
-            return;
           });
         }
       }),
@@ -1015,7 +1009,46 @@
     return module;
   };
 
+  // src/modules/images.ts
+  var Images = () => {
+    const module = new Module({
+      name: "Images",
+      description: "Images related settings."
+    });
+    module.loadFeatures([
+      new Feature({
+        name: "Upgrade Images",
+        description: ".",
+        default: true,
+        hidden: true,
+        run: (ctx) => {
+          ctx.logger.log(`enabled`);
+          return Observer("img", function() {
+            const $img = $(this);
+            if ($img.data("upgraded")) return;
+            $img.data("upgraded", true);
+            const SIZE = "500";
+            const src = $img.attr("src");
+            if (!src) return;
+            if (!/\/\d+x0\//.test(src) || src.includes(`${SIZE}x0`)) return;
+            const upgraded = src.replace(/\/\d+x0\//, `/${SIZE}x0/`);
+            const preloader = new Image();
+            preloader.src = upgraded;
+            preloader.onload = () => {
+              $img.attr("src", upgraded);
+              ctx.logger.debug("upgraded image:", upgraded);
+            };
+            preloader.onerror = (e) => {
+              ctx.logger.warn("image upgrade failed:", upgraded, e);
+            };
+          });
+        }
+      })
+    ]);
+    return module;
+  };
+
   // src/main.ts
-  var composer = new Composer([Global(), Album(), Artist(), User()]);
+  var composer = new Composer([Global(), Album(), Artist(), User(), Images()]);
   composer.start();
 })();

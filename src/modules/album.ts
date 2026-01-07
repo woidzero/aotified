@@ -16,11 +16,9 @@ export const Album = (): Module => {
   });
 
   const ALBUM_ID = location.pathname.match(/album\/(\d+)-/)?.[1];
-  if (!ALBUM_ID) {
-    return module;
+  if (ALBUM_ID) {
+    $("#centerContent").addClass("album");
   }
-
-  $("#centerContent").addClass("album");
 
   module.loadFeatures([
     new Feature({
@@ -31,7 +29,7 @@ export const Album = (): Module => {
       run: (ctx: FeatureContext) => {
         ctx.logger.log(`enabled`);
 
-        return Observer(
+        Observer(
           ".albumCriticScoreBox, .albumUserScoreBox",
           function () {
             const $box = $(this);
@@ -143,7 +141,6 @@ export const Album = (): Module => {
             const $root = $(this);
             const count = $root.find(".albumBlock").length;
             $root.addClass("releaseBlock").addClass(`count-${count}`);
-            return;
           }
         );
 
@@ -162,7 +159,6 @@ export const Album = (): Module => {
                 .insertBefore($albums.first())
                 .append($albums);
             });
-            return;
           },
           { once: true }
         );
@@ -171,7 +167,6 @@ export const Album = (): Module => {
           "#homeNewReleases .albumBlock, #albumOutput .albumBlock",
           function () {
             $(this).addClass("slim");
-            return;
           }
         );
 
@@ -184,8 +179,6 @@ export const Album = (): Module => {
           $("<div/>", { class: "ratingTextWrapper" })
             .append($texts)
             .appendTo(this);
-
-          return;
         });
 
         Observer("section", function () {
@@ -194,8 +187,6 @@ export const Album = (): Module => {
           ) {
             $(this).attr("id", "recentlyAdded");
           }
-
-          return;
         });
       },
     }),

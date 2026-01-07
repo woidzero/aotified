@@ -51,5 +51,6 @@ export const Images = (): Module => {
       },
     }),
   ]);
+
   return module;
 };

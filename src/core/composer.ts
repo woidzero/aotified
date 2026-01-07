@@ -1,4 +1,3 @@
-// composer.ts
 import { Logger } from "./logger";
 import { Settings } from "./settings";
 
