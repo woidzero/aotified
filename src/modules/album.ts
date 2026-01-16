@@ -5,7 +5,7 @@
  * added: 1.0.0
  */
 import { Module, Feature } from "../core/composer";
-import { Observer } from "../dom/observer";
+import { Observer } from "../core/observer";
 
 import { sort } from "../utils/sort";
 
@@ -51,8 +51,8 @@ export const Album = (): Module => {
               $(this).remove();
             });
 
-            $aggregate.unwrapSmart();
-            $spanRatingValue.unwrapSmart();
+            $aggregate.unpack();
+            $spanRatingValue.unpack();
 
             // move "user/critic score text"
             const $heading = $box.children(".heading");

@@ -11,7 +11,7 @@
 // ==/UserScript==
 
 (() => {
-    const DEV = true;
+    const DEV = false;
   
     const url = DEV
       ? `https://dev.woid.world/aotified/dist/bundle.js?ts=${Date.now()}`

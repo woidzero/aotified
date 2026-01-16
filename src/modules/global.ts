@@ -4,7 +4,7 @@
  * added: 1.0.0
  */
 import { Module, Feature } from "../core/composer";
-import { Observer } from "../dom/observer";
+import { Observer } from "../core/observer";
 
 export const Global = (): Module => {
   const module = new Module({
@@ -13,6 +13,46 @@ export const Global = (): Module => {
   });
 
   module.loadFeatures([
+    new Feature({
+      name: "Aotified",
+      description: "root",
+      default: true,
+      hidden: true,
+      run: (ctx: FeatureContext) => {
+        ctx.logger.log(`enabled`);
+
+        Observer(".ratingText", function () {
+          $(this).text(function (_, text) {
+            return text.replace(" score", "");
+          });
+        });
+
+        
+        Observer(".ratingRowContainer", function() {
+          const $root = $(this); 
+          
+          if ($root.find(".icon").length) {
+            $root.addClass("user")
+
+            const $ratingRow = $(this).find(".ratingRow")
+            $ratingRow.find("span:has(> .deleteRatingBlock)").remove()
+
+            const $message = $root.children("div[id^='message']")
+
+            if($message) {
+              $message.unpack();
+              $root.find("div[id^='deleteRating']").unpack()
+              $root.find("div[id^='insertRating']").remove()
+            }
+            
+            const $ratingIcons = $("<div class='ratingIcons'>")
+            $ratingRow.find("a:has(.icon)").appendTo($ratingIcons)
+            $root.append($ratingIcons);
+          }
+        })
+      },
+    }),
+    
     new Feature({
       name: "Show Logo",
       description: "Show [aotified] logo near AOTY logo.",

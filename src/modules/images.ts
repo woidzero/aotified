@@ -4,7 +4,7 @@
  * added: 1.0.0
  */
 import { Module, Feature } from "../core/composer";
-import { Observer } from "../dom/observer";
+import { Observer } from "../core/observer";
 
 export const Images = (): Module => {
   const module = new Module({

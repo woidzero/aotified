@@ -4,7 +4,7 @@
  * added: 1.0.0
  */
 import { Module, Feature } from "../core/composer";
-import { Observer } from "../dom/observer";
+import { Observer } from "../core/observer";
 
 export const Artist = (): Module => {
   const module = new Module({
@@ -20,42 +20,6 @@ export const Artist = (): Module => {
   $("#centerContent").addClass("artist");
 
   module.loadFeatures([
-    new Feature({
-      name: "Fix Ratings",
-      description: ".",
-      default: true,
-      hidden: true,
-      run: (ctx: FeatureContext) => {
-        ctx.logger.log(`enabled`);
-
-        Observer(".profileContent", function () {
-          const $root = $(this);
-          if ($root.data("releaseWrapped")) return;
-          $root.data("releaseWrapped", true);
-
-          const $headings = $root
-            .children(".sectionHeading")
-            .not("#favSection .sectionHeading");
-
-          $headings.each(function () {
-            const $heading = $(this);
-            const $releaseContainer = $("<div class='releaseContainer'>");
-            const $releaseBlock = $("<div class='releaseBlock'>");
-
-            $heading
-              .nextUntil(".sectionHeading", ".albumBlock")
-              .addClass("user")
-              .appendTo($releaseBlock);
-
-            if (!$releaseBlock.children().length) return;
-
-            $heading.wrap($releaseContainer);
-            $releaseBlock.insertAfter($heading);
-          });
-        });
-      },
-    }),
-
     new Feature({
       name: "Fix Artist Header",
       description: ".",
