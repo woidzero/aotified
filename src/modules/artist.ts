@@ -19,6 +19,118 @@ export const Artist = (): Module => {
 
   $("#centerContent").addClass("artist");
 
+  Observer(".facetContent", function () {
+    const $root = $(this);
+    console.debug("Observer triggered");
+
+    const $albums = $root.children(".albumBlock");
+
+    if ($albums.length) {
+      let $albumOutput = $root.children("#albumOutput");
+
+      if (!$albumOutput.length) {
+        $albumOutput = $("<div id='albumOutput'></div>");
+        $albums.first().before($albumOutput);
+      }
+
+      $albums.appendTo($albumOutput);
+    }
+  });
+
+  Observer(
+    "#albumOutput",
+    function () {
+      const $root = $(this);
+
+      if (
+        $root.children().length === 1 &&
+        $root.children(".adTagWide").length === 1
+      ) {
+        $root.append("<div class='noResults'>No Releases</div>");
+      }
+    },
+    { once: true }
+  );
+
+  Observer("#facetContent:has(> .subHeadline)", function () {
+    const $root = $(this);
+    const $releaseContainer = $("<div class='releaseContainer'></div>");
+
+    const $releaseBlock = $root
+      .children("#albumOutput")
+      .addClass("releaseBlock")
+      .removeAttr("id");
+
+    const $releaseHeaderItems = $root.children(
+      ".subHeadline, .listenRow.artist"
+    );
+
+    if ($releaseHeaderItems.length) {
+      $releaseHeaderItems.wrapAll("<div class='releaseHeader'></div>");
+    }
+
+    const $releaseHeader = $root.children(".releaseHeader");
+
+    if ($releaseBlock.length || $releaseHeader.length) {
+      $releaseContainer.append($releaseHeader, $releaseBlock);
+      $root.append($releaseContainer);
+    }
+
+    $releaseContainer.wrap("<div id='albumOutput'></div>");
+  });
+
+  Observer(
+    "#facets",
+    function () {
+      const $container = $(this);
+      let $currentItem: JQuery | null = null;
+
+      $container.children().each(function () {
+        const $el = $(this);
+        if ($el.hasClass("facetItem")) return;
+
+        if ($el.hasClass("center")) {
+          $el.addClass("facetButton").removeClass("center");
+          return;
+        }
+
+        if ($el.hasClass("facetTitle")) {
+          $currentItem = $("<div class='facetItem'>");
+          $el.before($currentItem);
+          $currentItem.append($el);
+          return;
+        }
+
+        if ($currentItem && $el.hasClass("facet")) {
+          $currentItem.append($el);
+        }
+      });
+    },
+    { once: true }
+  );
+
+  Observer(".artistFooter", function () {
+    const $footer = $(this);
+    let hasLiveSection = false;
+
+    $footer.children(".section").each(function () {
+      const $section = $(this);
+
+      if ($section.hasClass("relatedArtists")) {
+        if ($section.find(".artistBlock").length) hasLiveSection = true;
+        return;
+      }
+
+      if (!$section.find(".noDisplay").length) {
+        hasLiveSection = true;
+      }
+    });
+
+    if (!hasLiveSection) {
+      $footer.remove();
+    }
+  });
+
   module.loadFeatures([
     new Feature({
       name: "Fix Artist Header",
@@ -178,127 +290,6 @@ export const Artist = (): Module => {
           });
 
           $root.append($artistsBlock);
-        });
-      },
-    }),
-
-    new Feature({
-      name: "Wrap Ratings",
-      description: ".",
-      default: true,
-      hidden: true,
-      run: (ctx: FeatureContext) => {
-        ctx.logger.log(`enabled`);
-
-        return Observer(
-          ".artistCriticScoreBox, .artistUserScoreBox",
-          function () {
-            const $root = $(this);
-
-            let $ratingItem = $root.children(".ratingItem");
-
-            const $score = $root.children(".artistCriticScore").first().length
-              ? $root.children(".artistCriticScore")
-              : $root.children(".artistUserScore");
-
-            const $ratingBar = $root.children(".ratingBar");
-            const $text = $root.children(".text");
-
-            if (!$score.length || !$ratingBar.length || !$text.length) return;
-
-            if (!$ratingItem.length) {
-              $ratingItem = $("<div>", { class: "ratingItem" });
-              $score.before($ratingItem);
-              $ratingItem.append($score, $ratingBar);
-            }
-
-            if (!$ratingItem.closest(".ratingValue").length) {
-              const $ratingValue = $("<div>", { class: "ratingValue" });
-              $ratingItem.before($ratingValue);
-              $ratingValue.append($ratingItem, $text);
-            }
-          }
-        );
-      },
-    }),
-
-    new Feature({
-      name: "Color Ratings",
-      description: ".",
-      default: true,
-      hidden: true,
-      run: (ctx: FeatureContext) => {
-        ctx.logger.log(`enabled`);
-
-        return Observer(".ratingBlock, .ratingItem", function () {
-          const $el = $(this);
-          const $bar = $el.find(".ratingBar");
-
-          if (!$bar.length) return;
-
-          $el.removeClass("green yellow red");
-
-          if ($bar.hasClass("green")) $el.addClass("green");
-          else if ($bar.hasClass("yellow")) $el.addClass("yellow");
-          else if ($bar.hasClass("red")) $el.addClass("red");
-        });
-      },
-    }),
-
-    new Feature({
-      name: "Other Fixes",
-      description: ".",
-      default: true,
-      hidden: true,
-      run: (ctx: FeatureContext) => {
-        ctx.logger.log(`enabled`);
-
-        Observer("#facets", function () {
-          const $container = $(this);
-          let $currentItem: JQuery | null = null;
-
-          $container.children().each(function () {
-            const $el = $(this);
-            if ($el.hasClass("facetItem")) return;
-
-            if ($el.hasClass("center")) {
-              $el.addClass("facetButton").removeClass("center");
-              return;
-            }
-
-            if ($el.hasClass("facetTitle")) {
-              $currentItem = $("<div class='facetItem'>");
-              $el.before($currentItem);
-              $currentItem.append($el);
-              return;
-            }
-
-            if ($currentItem && $el.hasClass("facet")) {
-              $currentItem.append($el);
-            }
-          });
-        });
-
-        Observer(".artistFooter", function () {
-          const $footer = $(this);
-          let hasLiveSection = false;
-
-          $footer.children(".section").each(function () {
-            const $section = $(this);
-
-            if ($section.hasClass("relatedArtists")) {
-              if ($section.find(".artistBlock").length) hasLiveSection = true;
-              return;
-            }
-
-            if (!$section.find(".noDisplay").length) {
-              hasLiveSection = true;
-            }
-          });
-
-          if (!hasLiveSection) {
-            $footer.remove();
-          }
         });
       },
     }),

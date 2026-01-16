@@ -98,3 +98,20 @@ interface TComposer<M extends TModule = TModule> {
   enableFeature(moduleName: string, featureName: string): void;
   disableFeature(moduleName: string, featureName: string): void;
 }
+
+
+/**
+ * Overlay
+ */
+type OverlayContent = string | HTMLElement | JQuery<HTMLElement>;
+
+interface OverlayProps {
+  id: string;
+
+  heading: {
+    label: string;
+    icon?: string;
+  };
+
+  content: OverlayContent;
+}

@@ -27,7 +27,7 @@ export const Images = (): Module => {
           if ($img.data("upgraded")) return;
           $img.data("upgraded", true);
 
-          const SIZE = "500";
+          const SIZE = "700";
           const src = $img.attr("src");
           if (!src) return;
 

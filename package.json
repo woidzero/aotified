@@ -11,6 +11,8 @@
   "dependencies": {
     "@types/jquery": "^3.5.33",
     "esbuild": "^0.27.2",
-    "jquery": "^3.7.1"
+    "jquery": "^3.7.1",
+    "preact": "^10.28.2",
+    "preact-render-to-string": "^6.6.5"
   }
 }

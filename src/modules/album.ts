@@ -4,10 +4,12 @@
  * this is module for albums appearance and modifications.
  * added: 1.0.0
  */
+import { Overlay } from "../components/Overlay";
 import { Module, Feature } from "../core/composer";
 import { Observer } from "../core/observer";
 
 import { sort } from "../utils/sort";
+import { getYTID } from "../utils/utils";
 
 export const Album = (): Module => {
   const module = new Module({
@@ -16,18 +18,47 @@ export const Album = (): Module => {
   });
 
   const ALBUM_ID = location.pathname.match(/album\/(\d+)-/)?.[1];
+
   if (ALBUM_ID) {
     $("#centerContent").addClass("album");
   }
 
   module.loadFeatures([
     new Feature({
-      name: "Fix Ratings",
-      description: "Fix album ratings appearance.",
+      name: "Aotified",
+      description: ".",
       default: true,
       hidden: true,
       run: (ctx: FeatureContext) => {
         ctx.logger.log(`enabled`);
+
+        Observer("#centerContent.album", function () {
+          const $root = $(this);
+
+          const $fullWidth = $root.children(".fullWidth");
+          const $wideLeft = $root.find(".flexContainer .wideLeft.alignTop");
+
+          $fullWidth.replaceClass("*", "albumHeader");
+
+          const $albumCover = $fullWidth.children(".albumTopBox.cover");
+
+          const $albumBoxInfo = $fullWidth.children(".albumTopBox.info");
+          const $albumBoxRating = $albumCover.next(".albumTopBox");
+          $albumBoxRating.addClass("ratings");
+
+          const $albumHeadline = $fullWidth.children(".albumHeadline");
+          const $albumNav = $fullWidth.children(".selectRow");
+
+          const $albumDetails = $("<div class='albumDetails'>");
+          const $albumBoxes = $("<div class='albumBoxes'>");
+
+          $albumBoxes.append($albumBoxRating, $albumBoxInfo);
+
+          $albumCover.wrap("<div class='albumCover'>");
+          $albumNav.prependTo($wideLeft);
+          $albumDetails.append($albumHeadline, $albumBoxes);
+          $fullWidth.append($albumDetails);
+        });
 
         Observer(
           ".albumCriticScoreBox, .albumUserScoreBox",
@@ -85,6 +116,53 @@ export const Album = (): Module => {
           },
           { once: false }
         );
+      },
+    }),
+    new Feature({
+      name: "Embedded Videos",
+      description: "Shows embedded video if available",
+      default: true,
+      run: (ctx: FeatureContext) => {
+        ctx.logger.log(`enabled`);
+
+        let video_url: string | undefined;
+
+        Observer(".album:has(.albumTopBox.cover.video)", function () {
+          const $root = $(this);
+          const $link = $root.find(
+            ".albumLinksFlex a:has(.albumButton.youtube)"
+          );
+          video_url = $link.attr("href");
+
+          if (video_url) {
+            ctx.logger.log(`video: ${video_url}`);
+            const videoId = getYTID(video_url);
+
+            if (!videoId) {
+              alert("Неверная YouTube ссылка");
+              return;
+            }
+
+            const $iframe = $("<iframe>", {
+              src: `https://www.youtube.com/embed/${videoId}`,
+              frameborder: 0,
+              allow:
+                "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
+              allowfullscreen: true,
+            });
+
+            $root.find(".showImage").on("click", function (e) {
+              e.preventDefault();
+              e.stopPropagation();
+
+              Overlay({
+                id: "AOTIFIED_videoEmbed",
+                heading: { label: "Video", icon: "camera" },
+                content: $iframe
+              });
+            });
+          }
+        });
       },
     }),
     new Feature({

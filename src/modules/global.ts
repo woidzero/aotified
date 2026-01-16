@@ -21,12 +21,59 @@ export const Global = (): Module => {
       run: (ctx: FeatureContext) => {
         ctx.logger.log(`enabled`);
 
+        Observer("body > span, body", function () {
+          const $root = $(this);
+          if ($root.prop("tagName") === "SPAN") $root.unpack();
+        });
+        
+        Observer("body", function () {
+          const $root = $(this);
+
+          $root.children("#header").changeTag("header");
+          $root.children("#nav").changeTag("nav");
+          const $top = $root.children("header, nav");
+        
+          if ($top.parent(".pageTop").length === 0 && $top.length) {
+            $top.wrapAll("<div class='pageTop'></div>");
+          }
+        });
+
         Observer(".ratingText", function () {
           $(this).text(function (_, text) {
             return text.replace(" score", "");
           });
         });
 
+        Observer(".overlay", function () {
+          $(this).prependTo("body");
+        })
+
+        Observer(".overlay > .content", function () {
+          const $content = $(this);
+        
+          let $header = $content.children("header");
+          if (!$header.length) {
+            $header = $("<header></header>");
+            $content.prepend($header);
+          }
+        
+          const $headerElements = $content.find(".close, .subHeadline, .heading");
+        
+          $headerElements.each(function () {
+            $(this).appendTo($header);
+          });
+        
+          const $section = $content.children("section");
+          if (!$section.length) {
+            $content.children().not("header").wrapAll("<section></section>");
+            $content.find(".center").unpack()
+          }
+        
+          $content.removeAttr("style");
+          $content.find("br, .clear").remove()
+        
+          ctx.logger.info($content);
+        }, { once: false });
         
         Observer(".ratingRowContainer", function() {
           const $root = $(this); 
@@ -52,7 +99,70 @@ export const Global = (): Module => {
         })
       },
     }),
-    
+
+    new Feature({
+      name: "Wrap Ratings",
+      description: ".",
+      default: true,
+      hidden: true,
+      run: (ctx: FeatureContext) => {
+        ctx.logger.log(`enabled`);
+
+        return Observer(
+          ".artistCriticScoreBox, .artistUserScoreBox, .albumCriticScoreBox, .albumUserScoreBox",
+          function () {
+            const $root = $(this);
+
+            let $ratingItem = $root.children(".ratingItem");
+
+            const $score = $root.children(".artistCriticScore").first().length
+              ? $root.children(".artistCriticScore")
+              : $root.children(".artistUserScore");
+
+            const $ratingBar = $root.children(".ratingBar");
+            const $text = $root.children(".text");
+
+            if (!$score.length || !$ratingBar.length || !$text.length) return;
+
+            if (!$ratingItem.length) {
+              $ratingItem = $("<div>", { class: "ratingItem" });
+              $score.before($ratingItem);
+              $ratingItem.append($score, $ratingBar);
+            }
+
+            if (!$ratingItem.closest(".ratingValue").length) {
+              const $ratingValue = $("<div>", { class: "ratingValue" });
+              $ratingItem.before($ratingValue);
+              $ratingValue.append($ratingItem, $text);
+            }
+          }
+        );
+      },
+    }),
+
+    new Feature({
+      name: "Colorize Ratings",
+      description: ".",
+      default: true,
+      hidden: true,
+      run: (ctx: FeatureContext) => {
+        ctx.logger.log(`enabled`);
+
+        return Observer(".ratingBlock, .ratingItem", function () {
+          const $el = $(this);
+          const $bar = $el.find(".ratingBar");
+
+          if (!$bar.length) return;
+
+          $el.removeClass("green yellow red");
+
+          if ($bar.hasClass("green")) $el.addClass("green");
+          else if ($bar.hasClass("yellow")) $el.addClass("yellow");
+          else if ($bar.hasClass("red")) $el.addClass("red");
+        });
+      },
+    }),
+
     new Feature({
       name: "Show Logo",
       description: "Show [aotified] logo near AOTY logo.",
@@ -74,6 +184,7 @@ export const Global = (): Module => {
         );
       },
     }),
+
     new Feature({
       name: "Global Font",
       description: "Global font styles.",
@@ -101,6 +212,7 @@ export const Global = (): Module => {
         }).appendTo("head");
       },
     }),
+
     new Feature({
       name: "Seasonal",
       description: "Enable seasonal appearance such as snow.",
