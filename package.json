@@ -9,6 +9,7 @@
     "typescript": "^5"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.8",
     "@types/jquery": "^3.5.33",
     "esbuild": "^0.27.2",
     "jquery": "^3.7.1",

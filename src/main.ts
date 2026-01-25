@@ -1,4 +1,5 @@
 import "./core/plugins";
+import "./core/bootstrap";
 
 import { Composer } from "./core/composer";
 

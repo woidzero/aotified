@@ -93,13 +93,13 @@ export class Composer<M extends TModule = Module> {
           module: module,
           feature: feature,
           settings: this.settings,
-          logger: new Logger(`${module.name}/${feature.name}`),
+          logger: new Logger(`aotified.${module.name}/${feature.name}`),
         };
 
         const cleanup = feature.run(ctx);
         if (typeof cleanup === "function") feature.cleanup = cleanup;
       } catch (err) {
-        logger.error(`Failed to start feature "${feature.name}"`, err);
+        logger.error(`failed to start feature "${feature.name}"`, err);
       }
     }
   }

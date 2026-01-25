@@ -5,6 +5,10 @@
  */
 import { Module, Feature } from "../core/composer";
 import { Observer } from "../core/observer";
+import { positionMenu } from "../utils/dom";
+
+import { sort } from "../utils/sort";
+import { uid } from "../utils/utils";
 
 export const Global = (): Module => {
   const module = new Module({
@@ -15,27 +19,15 @@ export const Global = (): Module => {
   module.loadFeatures([
     new Feature({
       name: "Aotified",
-      description: "root",
+      description: "root code",
       default: true,
       hidden: true,
       run: (ctx: FeatureContext) => {
-        ctx.logger.log(`enabled`);
+        ctx.logger.log(`aotified initializing`);
 
-        Observer("body > span, body", function () {
+        $("body > span, body").each(function () {
           const $root = $(this);
           if ($root.prop("tagName") === "SPAN") $root.unpack();
-        });
-        
-        Observer("body", function () {
-          const $root = $(this);
-
-          $root.children("#header").changeTag("header");
-          $root.children("#nav").changeTag("nav");
-          const $top = $root.children("header, nav");
-        
-          if ($top.parent(".pageTop").length === 0 && $top.length) {
-            $top.wrapAll("<div class='pageTop'></div>");
-          }
         });
 
         Observer(".ratingText", function () {
@@ -50,34 +42,34 @@ export const Global = (): Module => {
 
         Observer(".overlay > .content", function () {
           const $content = $(this);
-        
+
           let $header = $content.children("header");
           if (!$header.length) {
             $header = $("<header></header>");
             $content.prepend($header);
           }
-        
+
           const $headerElements = $content.find(".close, .subHeadline, .heading");
-        
+
           $headerElements.each(function () {
             $(this).appendTo($header);
           });
-        
+
           const $section = $content.children("section");
           if (!$section.length) {
             $content.children().not("header").wrapAll("<section></section>");
             $content.find(".center").unpack()
           }
-        
+
           $content.removeAttr("style");
           $content.find("br, .clear").remove()
-        
+
           ctx.logger.info($content);
         }, { once: false });
-        
-        Observer(".ratingRowContainer", function() {
-          const $root = $(this); 
-          
+
+        Observer(".ratingRowContainer", function () {
+          const $root = $(this);
+
           if ($root.find(".icon").length) {
             $root.addClass("user")
 
@@ -86,17 +78,72 @@ export const Global = (): Module => {
 
             const $message = $root.children("div[id^='message']")
 
-            if($message) {
+            if ($message) {
               $message.unpack();
               $root.find("div[id^='deleteRating']").unpack()
               $root.find("div[id^='insertRating']").remove()
             }
-            
+
             const $ratingIcons = $("<div class='ratingIcons'>")
             $ratingRow.find("a:has(.icon)").appendTo($ratingIcons)
             $root.append($ratingIcons);
           }
         })
+      },
+    }),
+
+    new Feature({
+      name: "More Sorts",
+      description: "More sorting. Self-explanatory.",
+      default: true,
+      run: (ctx: FeatureContext) => {
+        ctx.logger.log(`enabled`);
+
+        Observer(
+          ".anticipatedHome",
+          function () {
+            const $root = $(this);
+            if ($root.find(".filterRow").length) return;
+
+            const $sort = $(`
+            <div class="filterRow">
+              <div class="menuDropFloatRight albumSort">
+                <div class="menuDropText">Sort</div>
+                <ul class="menuDrop">
+                  <li id="sort" class="menuDropSelected">
+                    <div class="menuDropSelectedText">Release date</div>
+                    <ul>
+                      <li class="current" data-sort="date">Release date</li>
+                      <li data-sort="comments">Comments</li>
+                      <li data-sort="saved">Saved</li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          `);
+
+            $sort.on("click", "li[data-sort]", function (e) {
+              e.preventDefault();
+
+              const $item = $(this);
+              const type = $item.data("sort");
+
+              $sort.find("li[data-sort]").removeClass("current");
+              $item.addClass("current");
+              $sort.find(".menuDropSelectedText").text($item.text());
+
+              requestAnimationFrame(() => {
+                $(".releaseBlock").each(function () {
+                  sort(type, $(this));
+                });
+              });
+            });
+
+            $sort.insertAfter($root.find(".sectionHeading"));
+          },
+          { once: true }
+        );
       },
     }),
 
@@ -186,6 +233,37 @@ export const Global = (): Module => {
     }),
 
     new Feature({
+      name: "Ambience",
+      description: "Ambience appearance.",
+      default: true,
+      run: () => {
+        const $artwork = $(".albumTopBox.cover img, .artistImage img");
+        if (!$artwork.length) return;
+
+        const $bg = $artwork.clone();
+
+        const src = $bg.attr("src");
+        if (src) {
+          $bg.attr(
+            "src",
+            src
+              .replace("https://cdn2.albumoftheyear.org/", "https://cdn.albumoftheyear.org/")
+              .replace(/\/\d+x0/, "")
+          );
+        }
+
+        $bg.removeAttr("srcset");
+
+        $bg.on("error", () => {
+          $bg.attr("src", $artwork.attr("src")!);
+        });
+
+        const $wrapper = $("<div>", { id: "aotified-ambience" }).append($bg);
+        $("body").append($wrapper);
+      }
+    }),
+
+    new Feature({
       name: "Global Font",
       description: "Global font styles.",
       default: true,
@@ -204,9 +282,9 @@ export const Global = (): Module => {
             code, pre, kbd, samp {
               font-family: ui-monospace, SFMono-Regular, monospace !important;
             }
-    
-            *:not(i[class^="fa"], i[class*=" fa"]) {
-              font-family: "Inter", system-ui, -apple-system, sans-serif !important;
+
+            *:not([class^="fa"], [class*=" fa"], [class^="fa-"], [class*="fal"]) {
+              font-family: var(--zui-font-primary) !important;
             }
           `,
         }).appendTo("head");
@@ -276,94 +354,8 @@ export const Global = (): Module => {
 
         draw();
       },
-    }),
-    new Feature({
-      name: "Dropdown Rework",
-      description: "Global dropdown rework.",
-      default: true,
-      hidden: true,
-      run: (ctx: FeatureContext) => {
-        ctx.logger.log(`enabled`);
-        const PORTAL_CLASS = "dropdownItems";
-
-        function ensurePortal() {
-          let $portal = $("body > ." + PORTAL_CLASS);
-          if (!$portal.length) {
-            $portal = $("<div>", { class: PORTAL_CLASS }).appendTo("body");
-          }
-          return $portal;
-        }
-
-        function uid() {
-          return "dropdown-" + Math.random().toString(36).slice(2, 9);
-        }
-
-        return Observer(".menuDropSelected", function () {
-          const $dropdown = $(this);
-
-          if ($dropdown.data("portalized")) return;
-          $dropdown.data("portalized", true);
-
-          const id = uid();
-          const $portal = ensurePortal();
-
-          const $button = $dropdown.children(".menuDropSelectedText");
-          const $menu = $dropdown.children("ul");
-
-          if (!$menu.length || !$button.length) return;
-
-          $dropdown.attr("data-dropdown-id", id);
-          $menu.attr("data-owner", id).addClass("portal dropdownContent");
-          $menu.hide();
-
-          $menu.appendTo($portal);
-
-          function positionMenu() {
-            const rect = $button?.[0]?.getBoundingClientRect();
-
-            $menu.css({
-              position: "fixed",
-              top: rect?.bottom + "px",
-              left: rect?.left + "px",
-              minWidth: rect?.width + "px",
-              zIndex: 9999,
-              display: "block",
-            });
-          }
-
-          function closeMenu() {
-            $menu.hide();
-            $(document).off("click." + id);
-          }
-
-          $button.on("click", function (e) {
-            e.stopPropagation();
-
-            if ($menu.is(":visible")) {
-              closeMenu();
-              return;
-            }
-
-            $(".menuDrop.portal").hide();
-            positionMenu();
-
-            setTimeout(() => {
-              $(document).on("click." + id, closeMenu);
-            });
-          });
-
-          $menu.on("click", "li", function (e) {
-            e.stopPropagation();
-            closeMenu();
-          });
-
-          $(window).on("resize", () => {
-            if ($menu.is(":visible")) positionMenu();
-          });
-        });
-      },
-    }),
-  ]);
+    })
+  ])
 
   return module;
 };

@@ -6,12 +6,18 @@ export function Observer<T extends JQuery = JQuery>(
     idle = false,
     intersection = false,
     intersectionOptions,
-  }: ObserveOptions = {}
+    live = false, // новый параметр
+  }: ObserveOptions & { live?: boolean } = {}
 ) {
+  const processed = live ? null : new WeakSet<Element>();
+
   const getRootEl = (): ParentNode =>
     (root as JQuery)?.[0] ?? (root as ParentNode);
 
   const run = (el: Element) => {
+    if (!live && processed?.has(el)) return;
+    if (!live) processed?.add(el);
+
     const $el = $(el) as T;
 
     const exec = () => callback.call($el);
@@ -58,10 +64,8 @@ export function Observer<T extends JQuery = JQuery>(
         if (node.matches(selector)) handle(node);
 
         node.querySelectorAll?.(selector).forEach((el) => handle(el));
-        
-        if (node.parentElement?.matches(selector)) {
-          handle(node.parentElement);
-        }
+
+        if (node.parentElement?.matches(selector)) handle(node.parentElement);
       }
     }
   });

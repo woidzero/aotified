@@ -13,8 +13,11 @@ export function parseDate(text: string) {
 
 export function getYTID(url: string) {
   const regExp =
-      /(?:youtube\.com\/(?:.*v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+    /(?:youtube\.com\/(?:.*v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
   const match = url.match(regExp);
   return match ? match[1] : null;
 }
 
+export function uid(prefix: string) {
+  return `${prefix}-` + Math.random().toString(36).slice(2, 9);
+}
