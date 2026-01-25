@@ -294,7 +294,7 @@ export const Global = (): Module => {
     new Feature({
       name: "Seasonal",
       description: "Enable seasonal appearance such as snow.",
-      default: true,
+      default: false,
       run: (ctx: FeatureContext) => {
         ctx.logger.log(`enabled`);
 

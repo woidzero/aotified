@@ -1,5 +1,5 @@
 import esbuild from "esbuild";
-import { createHash } from "crypto";
+import { sassPlugin } from "esbuild-sass-plugin";
 
 const watch = process.argv.includes("--watch");
 
@@ -9,21 +9,28 @@ const buildOptions = {
   bundle: true,
   format: "iife",
   target: "es2020",
-  sourcemap: false,
-  minify: false,
-
+  sourcemap: watch,
+  minify: !watch,
   external: ["jquery"],
   define: {
     "window.$": "window.$",
     "window.jQuery": "window.jQuery",
   },
+  plugins: [
+    sassPlugin({
+      type: "css-file",
+      outFile: "dist/style.css",
+      sourceMap: watch,
+    }),
+  ],
 };
 
 if (watch) {
   const ctx = await esbuild.context(buildOptions);
+
   await ctx.watch();
-  console.log("watching...");
+  console.log("👀 Watching JS + SCSS...");
 } else {
   await esbuild.build(buildOptions);
-  console.log("build ok");
+  console.log("✅ Build finished");
 }

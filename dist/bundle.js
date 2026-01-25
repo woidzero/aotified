@@ -2561,7 +2561,7 @@
       new Feature({
         name: "Seasonal",
         description: "Enable seasonal appearance such as snow.",
-        default: true,
+        default: false,
         run: (ctx) => {
           ctx.logger.log(`enabled`);
           const $canvas = $("<canvas>", { id: "aotified-snow" }).css({
@@ -3263,7 +3263,7 @@
     if (ARTIST_ID) {
       mod.loadFeatures([
         new Feature({
-          name: "More releases",
+          name: "More Releases",
           description: ".",
           default: true,
           hidden: true,
@@ -3456,3 +3456,4 @@
   var composer = new Composer([Global(), Album(), Artist(), User(), Images()]);
   composer.start();
 })();
+//# sourceMappingURL=bundle.js.map
