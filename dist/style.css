@@ -17,8 +17,9 @@
   --aoty-yellow: #F0E68C;
 }
 
-html {
-  background: var(--zui-box-5) !important;
+html,
+body {
+  background: var(--zui-box-1) !important;
 }
 
 button,
@@ -36,6 +37,10 @@ select {
   padding: 10px 15px !important;
 }
 
+p {
+  margin: 0 !important;
+}
+
 *,
 *::after,
 *::before {
@@ -47,10 +52,6 @@ html,
 * {
   scrollbar-color: var(--zui-box-6) var(--zui-box-0) !important;
   scrollbar-width: thin !important;
-}
-
-body {
-  padding: 20px 0 0 0 !important;
 }
 
 a {
@@ -80,211 +81,11 @@ body {
   font-size: 1rem !important;
 }
 
-.artistContent:not(:has(.releaseContainer)) body {
-  padding: 20px 0 !important;
-}
-.artistContent:not(:has(.releaseContainer)) #facetContent:has(#toggleSearch ~ #albumOutput) .subHeadline {
-  margin-bottom: 5px !important;
-}
-.artistContent:not(:has(.releaseContainer)) #facetContent:has(#toggleSearch ~ #albumOutput) .listenRow {
-  width: 100% !important;
-}
-.artistContent:not(:has(.releaseContainer)) .fullWidth:has(.largeSearch.center):has(.artistHeader) {
-  position: relative !important;
-}
-.artistContent:not(:has(.releaseContainer)) .fullWidth:has(.largeSearch.center):has(.artistHeader) .filterRow {
-  position: absolute !important;
-  height: 500px !important;
-  padding-right: 0px !important;
-  margin-right: 30px !important;
-  width: 10% !important;
-  right: 0 !important;
-}
-.artistContent:not(:has(.releaseContainer)) .fullWidth:has(.largeSearch.center):has(.artistHeader) .filterRow ul {
-  right: 0 !important;
-}
-.artistContent:not(:has(.releaseContainer)) .fullWidth:has(.largeSearch.center):has(.artistHeader):not(:has(.albumBlock)) .filterRow {
-  padding-right: 0px !important;
-}
-.artistContent:not(:has(.releaseContainer)) .fullWidth:has(.largeSearch.center):has(.artistHeader):not(:has(.albumBlock)) .largeSearch {
-  width: 100% !important;
-}
-@media screen and (min-width: 1280px) {
-  .artistContent:not(:has(.releaseContainer)) #centerContent,
-  .artistContent:not(:has(.releaseContainer)) .header,
-  .artistContent:not(:has(.releaseContainer)) .nav {
-    padding-right: 3% !important;
-    padding-left: 3% !important;
-  }
-  .artistContent:not(:has(.releaseContainer)) .footerContent {
-    margin: 0 3% !important;
-  }
-  .artistContent:not(:has(.releaseContainer)) .profileHeadLeft,
-  .artistContent:not(:has(.releaseContainer)) .profileNav {
-    max-width: 70% !important;
-  }
-  .artistContent:not(:has(.releaseContainer)) .albumBlock.five {
-    width: 17.5% !important;
-  }
-}
-@media screen and (min-width: 1376px) {
-  .artistContent:not(:has(.releaseContainer)) #centerContent,
-  .artistContent:not(:has(.releaseContainer)) .header,
-  .artistContent:not(:has(.releaseContainer)) .nav {
-    padding-right: 5% !important;
-    padding-left: 5% !important;
-  }
-  .artistContent:not(:has(.releaseContainer)) .footerContent {
-    margin: 0 5% !important;
-  }
-  .artistContent:not(:has(.releaseContainer)) .profileHeadLeft,
-  .artistContent:not(:has(.releaseContainer)) .profileNav {
-    max-width: 70.7% !important;
-  }
-}
-@media screen and (min-width: 1472px) {
-  .artistContent:not(:has(.releaseContainer)) #centerContent,
-  .artistContent:not(:has(.releaseContainer)) .header,
-  .artistContent:not(:has(.releaseContainer)) .nav {
-    padding-right: 8% !important;
-    padding-left: 8% !important;
-  }
-  .artistContent:not(:has(.releaseContainer)) .footerContent {
-    margin: 0 8% !important;
-  }
-  .artistContent:not(:has(.releaseContainer)) .profileHeadLeft,
-  .artistContent:not(:has(.releaseContainer)) .profileNav {
-    max-width: 70.7% !important;
-  }
-}
-@media screen and (min-width: 1600px) {
-  .artistContent:not(:has(.releaseContainer)) #centerContent,
-  .artistContent:not(:has(.releaseContainer)) .header,
-  .artistContent:not(:has(.releaseContainer)) .nav {
-    padding-right: 11% !important;
-    padding-left: 11% !important;
-  }
-  .artistContent:not(:has(.releaseContainer)) .footerContent {
-    margin: 0 11% !important;
-  }
-  .artistContent:not(:has(.releaseContainer)) .profileHeadLeft,
-  .artistContent:not(:has(.releaseContainer)) .profileNav {
-    max-width: 71% !important;
-  }
-}
-@media screen and (min-width: 1760px) {
-  .artistContent:not(:has(.releaseContainer)) #centerContent,
-  .artistContent:not(:has(.releaseContainer)) .header,
-  .artistContent:not(:has(.releaseContainer)) .nav {
-    padding-right: 15% !important;
-    padding-left: 15% !important;
-  }
-  .artistContent:not(:has(.releaseContainer)) .footerContent {
-    margin: 0 15% !important;
-  }
-  .artistContent:not(:has(.releaseContainer)) .profileHeadLeft,
-  .artistContent:not(:has(.releaseContainer)) .profileNav {
-    max-width: 70.5% !important;
-  }
-}
-@media screen and (min-width: 1920px) {
-  .artistContent:not(:has(.releaseContainer)) #centerContent,
-  .artistContent:not(:has(.releaseContainer)) .header,
-  .artistContent:not(:has(.releaseContainer)) .nav {
-    padding-right: 17% !important;
-    padding-left: 17% !important;
-  }
-  .artistContent:not(:has(.releaseContainer)) .footerContent {
-    margin: 0 17% !important;
-  }
-  .artistContent:not(:has(.releaseContainer)) .profileHeadLeft,
-  .artistContent:not(:has(.releaseContainer)) .profileNav {
-    max-width: 71.5% !important;
-  }
-}
-.artistContent:not(:has(.releaseContainer)) .nav {
-  position: absolute !important;
-  right: 0 !important;
-}
-.artistContent:not(:has(.releaseContainer)) .filterRow.buttons {
-  display: none !important;
-}
-
-.sectionHeading:has(~ #favBlock) {
-  margin-bottom: 0 !important;
-}
-
-section.fullWidth:has(#homeNewReleases) {
-  display: flex !important;
-  flex-direction: column !important;
-  padding: 20px 25px !important;
-  gap: 15px !important;
-}
-section.fullWidth:has(#homeNewReleases) .sectionHeading {
-  margin: 0 !important;
-}
-
 .siteNotification {
   margin-top: 0 !important;
   margin-inline: 0 !important;
 }
 
-div.artistMore {
-  display: flex !important;
-  flex-direction: row !important;
-  width: 100% !important;
-  gap: 15px !important;
-}
-div.artistMore .relatedArtists {
-  width: 100% !important;
-}
-div.artistMore .mediaList {
-  width: 50% !important;
-}
-div.artistMore .mediaList tbody {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 10px !important;
-}
-div.artistMore .mediaList tr {
-  display: flex !important;
-  gap: 15px !important;
-  flex-direction: row !important;
-  align-items: center !important;
-  background-color: var(--zui-box-1) !important;
-  border: 1px solid var(--zui-box-5) !important;
-  border-radius: var(--zui-br-8) !important;
-  padding: 10px 15px !important;
-}
-div.artistMore .mediaList tr td {
-  display: flex !important;
-  border: 0 !important;
-  padding: 0 !important;
-  width: fit-content !important;
-}
-div.artistMore .mediaList tr td > div {
-  margin: 0 !important;
-  width: 220px !important;
-  text-wrap: nowrap !important;
-  text-overflow: ellipsis !important;
-  overflow: hidden !important;
-}
-div.artistMore .mediaList tr td.songAlbum {
-  width: 220px !important;
-  flex-direction: column !important;
-}
-div.artistMore .mediaList tr td.trackRating {
-  height: fit-content !important;
-  width: 30px !important;
-}
-div.artistMore .relatedArtists,
-div.artistMore .mediaList {
-  margin: 0 !important;
-  max-width: 100% !important;
-  min-height: unset !important;
-}
-
-/* mod styles */
 .aotified {
   display: flex !important;
   flex-direction: column !important;
@@ -293,6 +94,367 @@ div.artistMore .mediaList {
 }
 .aotified body {
   position: relative !important;
+}
+.aotified-heading {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+.aotified-heading .headline {
+  margin: 0 !important;
+}
+.aotified-heading div {
+  color: var(--zui-fg-muted);
+}
+.aotified-image {
+  display: flex;
+}
+.aotified-image.pfp {
+  aspect-ratio: 1/1;
+  border-radius: 100%;
+}
+.aotified-image.pfp > * {
+  all: inherit !important;
+}
+.aotified-image.pfp.small {
+  width: 30px;
+}
+.aotified-image.pfp.medium {
+  width: 50px;
+}
+.aotified-image.pfp.medium {
+  width: 50px;
+}
+.aotified-label.username {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--zui-fg-primary);
+}
+.aotified-label.username.small {
+  font-size: 1rem;
+}
+.aotified-label.title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--zui-fg-primary);
+}
+.aotified-label.title.small {
+  font-size: 1rem;
+}
+.aotified-label.artist {
+  font-size: 1.3rem;
+  color: var(--zui-fg-muted);
+}
+.aotified-label.date {
+  color: var(--zui-fg-muted);
+  font-size: 1.1rem;
+}
+.aotified-user-header {
+  display: flex;
+  justify-content: space-between;
+}
+.aotified-user-profile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.aotified-user-profile .profilePic,
+.aotified-user-profile img {
+  border-radius: 100%;
+  display: flex;
+  width: 35px;
+}
+.aotified-rating.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1/1;
+  width: 70px;
+  padding: 0 !important;
+  font-weight: bold;
+  font-size: 2rem;
+}
+.aotified-rating.box > * {
+  font-size: inherit;
+}
+.aotified-rating.box.small {
+  width: 30px;
+  font-size: 1rem;
+}
+.aotified-review.container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.aotified-review.large {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: inherit;
+}
+.aotified-review.large .body {
+  gap: 20px;
+}
+.aotified-review.large .header {
+  padding: 10px 15px !important;
+  align-items: center;
+  gap: 15px;
+}
+.aotified-review.large .header.user {
+  padding: 5px 15px !important;
+}
+.aotified-review.large .header.user img {
+  width: 60px !important;
+  border-radius: 100%;
+}
+.aotified-review.large .header.user .box {
+  margin-left: auto !important;
+}
+.aotified-review.large .header .cover img {
+  width: 100px !important;
+}
+.aotified-review.large .header .dotDropMenuContainer {
+  margin-left: auto !important;
+}
+.aotified-review.details {
+  display: flex;
+  flex-direction: column;
+}
+.aotified-review.nav {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 10px;
+}
+.aotified-review.nav a {
+  display: flex !important;
+}
+.aotified-review.nav picture {
+  display: flex !important;
+  flex: 1 1 100%;
+}
+.aotified-review.nav picture img {
+  display: flex !important;
+  width: 100% !important;
+  border-radius: var(--zui-br-8);
+}
+.aotified-review.nav.item {
+  display: flex;
+  align-items: center;
+}
+.aotified-review.nav.item .arrow {
+  padding: 10px !important;
+  color: var(--zui-fg-primary) !important;
+  font-size: 2rem !important;
+  height: fit-content !important;
+}
+.aotified-review.nav .nextAlbumReview,
+.aotified-review.nav .prevAlbumReview {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.aotified-review.body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1 1 100%;
+  gap: 8px;
+}
+.aotified-review.text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.4;
+  height: 100%;
+  font-size: 1.2rem;
+}
+.aotified-review.text.small {
+  font-size: 1rem;
+}
+.aotified-review.actions.box {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+.aotified-review.actions.item {
+  display: flex;
+  align-items: center;
+  color: var(--zui-fg-muted);
+  gap: 5px;
+}
+.aotified-review.actions.item > a,
+.aotified-review.actions.item .review_like,
+.aotified-review.actions.item .review_likes_container,
+.aotified-review.actions.item .review_comments,
+.aotified-review.actions.item .review_likes {
+  display: flex !important;
+  align-items: center !important;
+  line-height: normal !important;
+  height: fit-content !important;
+  color: var(--zui-fg-muted) !important;
+  margin: 0 !important;
+}
+.aotified-review.actions.item > a:empty,
+.aotified-review.actions.item .review_like:empty,
+.aotified-review.actions.item .review_likes_container:empty,
+.aotified-review.actions.item .review_comments:empty,
+.aotified-review.actions.item .review_likes:empty {
+  display: none !important;
+}
+.aotified-review.actions.item > a div,
+.aotified-review.actions.item .review_like div,
+.aotified-review.actions.item .review_likes_container div,
+.aotified-review.actions.item .review_comments div,
+.aotified-review.actions.item .review_likes div {
+  margin: 0 !important;
+  height: fit-content !important;
+  line-height: normal !important;
+}
+.aotified-review.actions.item > a a,
+.aotified-review.actions.item .review_like a,
+.aotified-review.actions.item .review_likes_container a,
+.aotified-review.actions.item .review_comments a,
+.aotified-review.actions.item .review_likes a {
+  display: flex !important;
+  align-items: center !important;
+  height: fit-content !important;
+  gap: 5px;
+}
+.aotified-review.actions.item .review_like:hover {
+  color: var(--zui-fg-primary) !important;
+}
+.aotified-review.title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.aotified-review.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 !important;
+  width: 100%;
+  gap: 8px;
+}
+.aotified-review.header .title {
+  display: flex;
+  flex-direction: column-reverse;
+}
+.aotified-review.header.user {
+  flex-direction: row !important;
+  padding: 0 !important;
+}
+.aotified-review.header.user img {
+  width: 60px !important;
+  border-radius: 100%;
+}
+.aotified-review.header.user .box {
+  margin-left: auto !important;
+}
+.aotified-review.header .cover {
+  display: flex !important;
+  margin: 0 !important;
+  width: fit-content !important;
+}
+.aotified-review.header .cover a {
+  all: inherit !important;
+}
+.aotified-review.header .cover img {
+  border-radius: var(--zui-br-8) !important;
+  width: 50px !important;
+}
+.aotified-panels {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+}
+.aotified-panels #anticipated {
+  min-width: 700px !important;
+}
+.aotified-panels #anticipated .releaseBlock .albumBlock {
+  --sizing: 213px !important;
+}
+.aotified-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.aotified-list-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 1.2rem;
+  gap: 8px;
+}
+.aotified-list-item a {
+  all: inherit;
+}
+.aotified-list-item img {
+  width: 35px !important;
+}
+.aotified-group {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 10px;
+}
+.aotified-group.center {
+  justify-content: center;
+  align-items: center;
+}
+.aotified-group.no-wrap {
+  flex-wrap: nowrap;
+}
+.aotified-group.vertical {
+  flex-direction: column;
+}
+.aotified-group.grid {
+  display: grid !important;
+  gap: 20px;
+}
+.aotified-group.grid-3x2 {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+.aotified-group.grid-5x2 {
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+.aotified-group.grid.gap-10 {
+  gap: 10px;
+}
+.aotified-panel {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+}
+.aotified-panel .addCoverBox {
+  width: 100%;
+  border: 0;
+  padding: 0 !important;
+}
+.aotified-cover-card {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.aotified-cover-header {
+  display: flex;
+}
+.aotified-cover-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.aotified-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 .aotified #aotified-snow {
   position: absolute !important;
@@ -333,7 +495,7 @@ div.artistMore .mediaList {
   margin: 0 !important;
   box-shadow: 0px 15px 50px rgba(0, 0, 0, 0.7607843137) !important;
   pointer-events: auto !important;
-  z-index: 9999 !important;
+  z-index: 998 !important;
   position: absolute !important;
   gap: 0px !important;
   min-width: 150px !important;
@@ -370,20 +532,30 @@ div.artistMore .mediaList {
 .aotified #centerContent,
 .aotified .pageTop {
   margin: 0 !important;
-  z-index: 2 !important;
-}
-.aotified #accountLinks {
-  z-index: 5 !important;
 }
 .aotified .fullWidth {
   width: 100% !important;
   flex: 1 1 100% !important;
+  margin-bottom: 0 !important;
 }
-.aotified .clear {
-  display: none !important;
+.aotified #centerContent,
+.aotified .pageTop {
+  z-index: inherit !important;
 }
 .aotified .browseBy {
   margin-top: 0 !important;
+}
+.aotified footer {
+  z-index: 2 !important;
+}
+.aotified main {
+  z-index: 5 !important;
+}
+.aotified main,
+.aotified footer {
+  display: flex;
+  flex-direction: column;
+  gap: inherit;
 }
 .aotified .pageTop {
   display: flex !important;
@@ -420,6 +592,13 @@ div.artistMore .mediaList {
     gap: 20px !important;
   }
   .aotified .pageTop #header #searchContainer {
+    width: 100% !important;
+  }
+  .aotified .flexContainer {
+    flex-direction: column !important;
+  }
+  .aotified .flexContainer .rightContent {
+    max-width: unset !important;
     width: 100% !important;
   }
 }
@@ -468,12 +647,13 @@ div.artistMore .mediaList {
   justify-content: center !important;
   width: 100% !important;
   height: 100vh !important;
-  z-index: 99 !important;
+  z-index: 999 !important;
   background-color: rgba(0, 0, 0, 0.5) !important;
   margin: 0 !important;
   opacity: 1 !important;
   inset: 0 !important;
   pointer-events: all !important;
+  padding: 0 !important;
 }
 .aotified .overlay:empty {
   display: none !important;
@@ -569,6 +749,9 @@ div.artistMore .mediaList {
   width: 100% !important;
   height: 100% !important;
 }
+.aotified .overlay .commentRow {
+  width: 100% !important;
+}
 .aotified .filterRow {
   width: 100% !important;
   margin: 0 !important;
@@ -603,9 +786,9 @@ div.artistMore .mediaList {
   font-size: 1rem !important;
   content: " " !important;
   font-family: var(--zui-font-icon) !important;
+  border: 4px solid var(--zui-box-6) !important;
   width: 30px !important;
   height: 30px !important;
-  border: 4px solid var(--zui-box-6) !important;
   border-bottom-color: white !important;
   border-radius: 50% !important;
   animation: rotation 1s linear infinite !important;
@@ -618,7 +801,7 @@ div.artistMore .mediaList {
     transform: rotate(360deg);
   }
 }
-.aotified .releaseBlock,
+.aotified-releases,
 .aotified #albumOutput {
   display: flex !important;
   flex-wrap: wrap !important;
@@ -626,44 +809,44 @@ div.artistMore .mediaList {
   position: relative !important;
   padding-bottom: 0 !important;
   gap: 15px !important;
+  --sizing: 170px;
 }
-.aotified .releaseBlock.large .albumBlock,
-.aotified #albumOutput.large .albumBlock {
-  --sizing: 199px !important;
+.aotified-releases.large,
+.aotified #albumOutput.large {
+  --sizing: 200px !important;
 }
-.aotified .releaseBlock.count-5 .albumBlock,
-.aotified #albumOutput.count-5 .albumBlock {
-  --sizing: 199px !important;
+.aotified-releases.small,
+.aotified #albumOutput.small {
+  --sizing: 165px !important;
 }
-.aotified .releaseBlock .sectionHeading,
+.aotified-releases .sectionHeading,
 .aotified #albumOutput .sectionHeading {
   margin: 0 !important;
   width: 100% !important;
 }
-.aotified .releaseBlock .pageSelectRow,
+.aotified-releases .pageSelectRow,
 .aotified #albumOutput .pageSelectRow {
   position: relative !important;
   top: 0 !important;
   width: 100% !important;
   margin: 20px 0 !important;
 }
-.aotified .releaseBlock:has(.loading)::after,
+.aotified-releases:has(.loading)::after,
 .aotified #albumOutput:has(.loading)::after {
   display: none !important;
 }
-.aotified .releaseBlock:has(.loading) .loading,
+.aotified-releases:has(.loading) .loading,
 .aotified #albumOutput:has(.loading) .loading {
   width: 100% !important;
   margin-top: 30px !important;
 }
-.aotified .releaseBlock::after,
+.aotified-releases::after,
 .aotified #albumOutput::after {
   content: "";
   flex: auto;
 }
-.aotified .releaseBlock .albumBlock,
+.aotified-releases .albumBlock,
 .aotified #albumOutput .albumBlock {
-  --sizing: 230px !important;
   display: flex !important;
   flex-direction: column !important;
   align-items: flex-start !important;
@@ -674,10 +857,10 @@ div.artistMore .mediaList {
   margin: 0 !important;
   gap: 5px !important;
 }
-.aotified .releaseBlock .albumBlock .albumTitle,
-.aotified .releaseBlock .albumBlock .artistTitle,
-.aotified .releaseBlock .albumBlock a:has(.artistTitle),
-.aotified .releaseBlock .albumBlock a:has(.albumTitle),
+.aotified-releases .albumBlock .albumTitle,
+.aotified-releases .albumBlock .artistTitle,
+.aotified-releases .albumBlock a:has(.artistTitle),
+.aotified-releases .albumBlock a:has(.albumTitle),
 .aotified #albumOutput .albumBlock .albumTitle,
 .aotified #albumOutput .albumBlock .artistTitle,
 .aotified #albumOutput .albumBlock a:has(.artistTitle),
@@ -685,18 +868,18 @@ div.artistMore .mediaList {
   max-width: var(--sizing) !important;
   line-height: 1.2 !important;
 }
-.aotified .releaseBlock .albumBlock .albumBlockLinks,
+.aotified-releases .albumBlock .albumBlockLinks,
 .aotified #albumOutput .albumBlock .albumBlockLinks {
   display: flex !important;
   gap: 10px !important;
   order: 3 !important;
 }
-.aotified .releaseBlock .albumBlock .albumBlockLinks a,
+.aotified-releases .albumBlock .albumBlockLinks a,
 .aotified #albumOutput .albumBlock .albumBlockLinks a {
   display: flex !important;
   gap: 5px !important;
 }
-.aotified .releaseBlock .albumBlock .albumBlockLinks .actionContainer,
+.aotified-releases .albumBlock .albumBlockLinks .actionContainer,
 .aotified #albumOutput .albumBlock .albumBlockLinks .actionContainer {
   display: flex !important;
   width: fit-content !important;
@@ -704,66 +887,41 @@ div.artistMore .mediaList {
   min-width: unset !important;
   min-height: unset !important;
 }
-.aotified .releaseBlock .albumBlock .glow,
-.aotified #albumOutput .albumBlock .glow {
-  position: absolute !important;
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  text-align: center;
-  border-radius: 50%;
-  background: radial-gradient(circle at center, green 80%, rgba(0, 255, 38, 0.2) 70%);
-  color: #fff;
-  font-weight: bold;
-  opacity: 0.3 !important;
-  box-shadow: 0 0 20px 5px green, 0 0 40px 10px rgba(0, 255, 38, 0.6);
-  animation: glowPulse 1.5s infinite alternate;
-  transform: translateY(0px);
-  z-index: 999 !important;
-  mix-blend-mode: screen !important;
-}
-@keyframes glowPulse {
-  0% {
-    box-shadow: 0 0 15px 5px green, 0 0 30px 10px rgba(0, 255, 38, 0.5);
-  }
-  100% {
-    box-shadow: 0 0 20px 8px green, 0 0 50px 15px rgba(0, 255, 38, 0.8);
-  }
-}
-.aotified .releaseBlock .albumBlock.small,
-.aotified #albumOutput .albumBlock.small {
+.aotified-releases .albumBlock.small, .aotified-releases .albumBlock.one,
+.aotified #albumOutput .albumBlock.small,
+.aotified #albumOutput .albumBlock.one {
   padding: 0 !important;
   margin: 0 !important;
   width: var(--sizing) !important;
 }
-.aotified .releaseBlock .albumBlock.user .ratingRowContainer > div > .ratingRow,
+.aotified-releases .albumBlock.user .ratingRowContainer > div > .ratingRow,
 .aotified #albumOutput .albumBlock.user .ratingRowContainer > div > .ratingRow {
   display: flex !important;
   width: 100% !important;
   gap: 5px !important;
   overflow: hidden !important;
 }
-.aotified .releaseBlock .albumBlock.user .ratingRowContainer > div > .ratingRow div[id^=delete],
+.aotified-releases .albumBlock.user .ratingRowContainer > div > .ratingRow div[id^=delete],
 .aotified #albumOutput .albumBlock.user .ratingRowContainer > div > .ratingRow div[id^=delete] {
   order: -1 !important;
 }
-.aotified .releaseBlock .albumBlock.user .ratingRowContainer > div > .ratingRow a:first-child,
+.aotified-releases .albumBlock.user .ratingRowContainer > div > .ratingRow a:first-child,
 .aotified #albumOutput .albumBlock.user .ratingRowContainer > div > .ratingRow a:first-child {
   margin-left: auto !important;
 }
-.aotified .releaseBlock .albumBlock.user .ratingRowContainer > div > .ratingRow a:nth-child(2),
+.aotified-releases .albumBlock.user .ratingRowContainer > div > .ratingRow a:nth-child(2),
 .aotified #albumOutput .albumBlock.user .ratingRowContainer > div > .ratingRow a:nth-child(2) {
   padding-left: 5px !important;
 }
-.aotified .releaseBlock .albumBlock.user .ratingRowContainer > div > .ratingRow .icon,
+.aotified-releases .albumBlock.user .ratingRowContainer > div > .ratingRow .icon,
 .aotified #albumOutput .albumBlock.user .ratingRowContainer > div > .ratingRow .icon {
   padding: 0 !important;
 }
-.aotified .releaseBlock .albumBlock.slim .ratingRowContainer,
+.aotified-releases .albumBlock.slim .ratingRowContainer,
 .aotified #albumOutput .albumBlock.slim .ratingRowContainer {
   flex-direction: row !important;
 }
-.aotified .releaseBlock .albumBlock.slim .ratingRowContainer .ratingRow,
+.aotified-releases .albumBlock.slim .ratingRowContainer .ratingRow,
 .aotified #albumOutput .albumBlock.slim .ratingRowContainer .ratingRow {
   display: flex !important;
   flex-direction: column !important;
@@ -772,55 +930,55 @@ div.artistMore .mediaList {
   flex-wrap: wrap !important;
   gap: 5px !important;
 }
-.aotified .releaseBlock .albumBlock.slim .ratingRowContainer .ratingRow .ratingBlock,
+.aotified-releases .albumBlock.slim .ratingRowContainer .ratingRow .ratingBlock,
 .aotified #albumOutput .albumBlock.slim .ratingRowContainer .ratingRow .ratingBlock {
   order: 0 !important;
   width: unset !important;
 }
-.aotified .releaseBlock .albumBlock.five .ratingRowContainer,
+.aotified-releases .albumBlock.five .ratingRowContainer,
 .aotified #albumOutput .albumBlock.five .ratingRowContainer {
   flex-direction: row !important;
 }
-.aotified .releaseBlock .albumBlock.five .ratingRowContainer .ratingRow,
+.aotified-releases .albumBlock.five .ratingRowContainer .ratingRow,
 .aotified #albumOutput .albumBlock.five .ratingRowContainer .ratingRow {
   flex-direction: row !important;
   align-items: center !important;
   justify-content: flex-start !important;
 }
-.aotified .releaseBlock .albumBlock.five .ratingRowContainer .ratingRow .ratingText:nth-child(2),
+.aotified-releases .albumBlock.five .ratingRowContainer .ratingRow .ratingText:nth-child(2),
 .aotified #albumOutput .albumBlock.five .ratingRowContainer .ratingRow .ratingText:nth-child(2) {
   justify-content: unset !important;
   width: fit-content !important;
 }
-.aotified .releaseBlock .albumBlock.five .ratingRowContainer .ratingRow .ratingBlock,
+.aotified-releases .albumBlock.five .ratingRowContainer .ratingRow .ratingBlock,
 .aotified #albumOutput .albumBlock.five .ratingRowContainer .ratingRow .ratingBlock {
   order: 0 !important;
   width: fit-content !important;
 }
-.aotified .releaseBlock .albumBlock .type,
+.aotified-releases .albumBlock .type,
 .aotified #albumOutput .albumBlock .type {
   padding: 0 !important;
   order: 3 !important;
 }
-.aotified .releaseBlock .albumBlock div,
-.aotified .releaseBlock .albumBlock a,
+.aotified-releases .albumBlock div,
+.aotified-releases .albumBlock a,
 .aotified #albumOutput .albumBlock div,
 .aotified #albumOutput .albumBlock a {
   margin: 0 !important;
 }
-.aotified .releaseBlock .albumBlock .albumTitle,
-.aotified .releaseBlock .albumBlock a:has(.albumTitle),
+.aotified-releases .albumBlock .albumTitle,
+.aotified-releases .albumBlock a:has(.albumTitle),
 .aotified #albumOutput .albumBlock .albumTitle,
 .aotified #albumOutput .albumBlock a:has(.albumTitle) {
   order: 0 !important;
 }
-.aotified .releaseBlock .albumBlock .artistTitle,
-.aotified .releaseBlock .albumBlock a:has(.artistTitle),
+.aotified-releases .albumBlock .artistTitle,
+.aotified-releases .albumBlock a:has(.artistTitle),
 .aotified #albumOutput .albumBlock .artistTitle,
 .aotified #albumOutput .albumBlock a:has(.artistTitle) {
   order: 1 !important;
 }
-.aotified .releaseBlock .albumBlock .type.functions,
+.aotified-releases .albumBlock .type.functions,
 .aotified #albumOutput .albumBlock .type.functions {
   display: flex !important;
   flex-wrap: wrap !important;
@@ -828,24 +986,21 @@ div.artistMore .mediaList {
   order: 1 !important;
   padding: 0 !important;
 }
-.aotified .releaseBlock .albumBlock .type.functions .dotDropMenuContainer,
+.aotified-releases .albumBlock .type.functions .dotDropMenuContainer,
 .aotified #albumOutput .albumBlock .type.functions .dotDropMenuContainer {
   display: flex !important;
   height: 100% !important;
 }
-.aotified .releaseBlock .albumBlock div[id^=message],
+.aotified-releases .albumBlock div[id^=message],
 .aotified #albumOutput .albumBlock div[id^=message] {
   width: 100% !important;
 }
-.aotified .releaseBlock .albumBlock .ratingRowContainer,
+.aotified-releases .albumBlock .ratingRowContainer,
 .aotified #albumOutput .albumBlock .ratingRowContainer {
   display: flex;
   align-items: center !important;
   flex-direction: row !important;
   justify-content: center !important;
-  background-color: var(--zui-box-0) !important;
-  border: 1px solid var(--zui-box-4) !important;
-  border-radius: var(--zui-br-8) !important;
   margin: 0 !important;
   margin-top: 3px !important;
   padding: 8px 10px !important;
@@ -856,27 +1011,27 @@ div.artistMore .mediaList {
   flex-wrap: wrap !important;
   gap: 15px !important;
 }
-.aotified .releaseBlock .albumBlock .ratingRowContainer.user,
+.aotified-releases .albumBlock .ratingRowContainer.user,
 .aotified #albumOutput .albumBlock .ratingRowContainer.user {
   flex-direction: row !important;
   justify-content: space-between !important;
 }
-.aotified .releaseBlock .albumBlock .ratingRowContainer .ratingIcons,
-.aotified .releaseBlock .albumBlock .ratingRowContainer .ratingRow,
+.aotified-releases .albumBlock .ratingRowContainer .ratingIcons,
+.aotified-releases .albumBlock .ratingRowContainer .ratingRow,
 .aotified #albumOutput .albumBlock .ratingRowContainer .ratingIcons,
 .aotified #albumOutput .albumBlock .ratingRowContainer .ratingRow {
   display: inline-flex !important;
   width: fit-content !important;
   gap: 10px !important;
 }
-.aotified .releaseBlock .albumBlock .ratingRowContainer .ratingIcons,
+.aotified-releases .albumBlock .ratingRowContainer .ratingIcons,
 .aotified #albumOutput .albumBlock .ratingRowContainer .ratingIcons {
   flex-direction: row !important;
   gap: 3px !important;
   order: 99 !important;
 }
-.aotified .releaseBlock .albumBlock .ratingRowContainer .ratingIcons a,
-.aotified .releaseBlock .albumBlock .ratingRowContainer .ratingIcons .icon,
+.aotified-releases .albumBlock .ratingRowContainer .ratingIcons a,
+.aotified-releases .albumBlock .ratingRowContainer .ratingIcons .icon,
 .aotified #albumOutput .albumBlock .ratingRowContainer .ratingIcons a,
 .aotified #albumOutput .albumBlock .ratingRowContainer .ratingIcons .icon {
   display: inline-flex !important;
@@ -887,19 +1042,19 @@ div.artistMore .mediaList {
   width: 15px !important;
   aspect-ratio: 1/1 !important;
 }
-.aotified .releaseBlock .albumBlock .ratingRowContainer .ratingRow .ratingTextWrapper,
+.aotified-releases .albumBlock .ratingRowContainer .ratingRow .ratingTextWrapper,
 .aotified #albumOutput .albumBlock .ratingRowContainer .ratingRow .ratingTextWrapper {
   display: inline-flex !important;
   text-transform: uppercase !important;
   gap: 3px !important;
 }
-.aotified .releaseBlock .albumBlock .ratingRowContainer .ratingRow .ratingAction,
+.aotified-releases .albumBlock .ratingRowContainer .ratingRow .ratingAction,
 .aotified #albumOutput .albumBlock .ratingRowContainer .ratingRow .ratingAction {
   display: inline-flex !important;
   align-items: center !important;
   gap: 10px !important;
 }
-.aotified .releaseBlock .albumBlock .image,
+.aotified-releases .albumBlock .image,
 .aotified #albumOutput .albumBlock .image {
   aspect-ratio: 1/1 !important;
   width: var(--sizing) !important;
@@ -912,42 +1067,15 @@ div.artistMore .mediaList {
   margin: 0 !important;
   margin-bottom: 3px !important;
 }
-.aotified .releaseBlock .albumBlock .image .mustHear,
+.aotified-releases .albumBlock .image .mustHear,
 .aotified #albumOutput .albumBlock .image .mustHear {
   top: 5px !important;
   right: 6px !important;
 }
-.aotified .releaseBlock .albumBlock .image img,
+.aotified-releases .albumBlock .image img,
 .aotified #albumOutput .albumBlock .image img {
   aspect-ratio: 1/1 !important;
   border: 1px solid var(--zui-box-4) !important;
-  width: 100% !important;
-  height: 100% !important;
-}
-.aotified .releaseBlock .artistBlock,
-.aotified #albumOutput .artistBlock {
-  --sizing: 150px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  gap: 10px !important;
-  width: var(--sizing) !important;
-}
-.aotified .releaseBlock .artistBlock .image,
-.aotified #albumOutput .artistBlock .image {
-  display: flex !important;
-  aspect-ratio: 1/1 !important;
-  position: relative !important;
-  width: var(--sizing) !important;
-  height: var(--sizing) !important;
-  padding: 0 !important;
-  margin: 0 !important;
-}
-.aotified .releaseBlock .artistBlock .image img,
-.aotified #albumOutput .artistBlock .image img {
-  aspect-ratio: 1/1 !important;
-  position: unset !important;
   width: 100% !important;
   height: 100% !important;
 }
@@ -958,6 +1086,15 @@ div.artistMore .mediaList {
 .aotified #albumOutput:has(.noResults) {
   align-items: center !important;
   justify-content: center !important;
+}
+.aotified #albumOutput:has(.pageSelectRow) .albumBlock {
+  --sizing: 260px !important;
+}
+.aotified #albumOutput:has(.pageSelectRow)::after {
+  display: flex !important;
+}
+.aotified #albumOutput:has(.pageSelectRow) .pageSelectRow {
+  margin-bottom: 0 !important;
 }
 .aotified #albumOutput::after {
   display: none !important;
@@ -980,9 +1117,18 @@ div.artistMore .mediaList {
   background: 0 !important;
   padding: 0 !important;
   border: 0 !important;
+  gap: 20px;
 }
 .aotified .rightContent .rightBox {
+  display: flex !important;
+  flex-direction: column !important;
   padding: 12px 15px !important;
+  margin: 0 !important;
+  width: 100% !important;
+  gap: 10px !important;
+}
+.aotified .rightContent .rightBox:last-child {
+  flex: 1 1 100% !important;
 }
 .aotified .ratingItem .ratingBar {
   width: 75px !important;
@@ -1037,6 +1183,14 @@ div.artistMore .mediaList {
 .aotified .selectRow .selectBox {
   display: flex !important;
 }
+.aotified .albumActions {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 10px;
+}
+.aotified .wideLeft > .selectRow {
+  padding: 10px !important;
+}
 .aotified .selectRow,
 .aotified .selectBox,
 .aotified .thirdPartyLinks,
@@ -1051,21 +1205,40 @@ div.artistMore .mediaList {
   border: 0 !important;
   line-height: normal !important;
 }
+.aotified .rightContent .rightBox.donorBanner,
+.aotified .message.green {
+  --color: 0, 255, 50 !important;
+}
+.aotified .popularButton {
+  --color: 255, 50, 250 !important;
+}
 .aotified .albumUserScoreBox,
 .aotified .albumCriticScoreBox,
 .aotified .albumTopBox.info,
 .aotified .artistTopBox.info,
 .aotified .artistTopBox.ratings > div,
-.aotified .trackListTable,
+.aotified .trackListTable:not(.small),
 .aotified .reviewTextBox,
 .aotified .userAreaButtons,
+.aotified .albumReviewRow,
+.aotified .rightBox > .commentRow,
+.aotified .ratingRowContainer,
+.aotified .section > .commentRow,
+.aotified .userListRow.profile,
+.aotified .notificationRow,
+.aotified .newsBlockLarge,
+.aotified .userReviewBlock,
+.aotified .userReviewHeader,
+.aotified .statsBlock,
+.aotified .aboutUser,
 .aotified #ratingBlock,
 .aotified #currentRatingBlock,
-.aotified .albumReviewRow,
 .aotified #commentList > .commentRow,
-.aotified .rightBox > .commentRow {
-  background: rgba(0, 0, 0, 0.5) !important;
-  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.25) !important;
+.aotified #albumOutput:has(.pageSelectRow),
+.aotified #ratingDistribution .dist, .aotified-panel, .aotified-review.large .header.user, .aotified-review.container, .aotified-section.sub {
+  --color: 0,0,0;
+  background: rgba(var(--color), 0.5) !important;
+  box-shadow: 0 5px 30px rgba(var(--color), 0.25) !important;
   -webkit-backdrop-filter: blur(8px) !important;
   backdrop-filter: blur(4.7px) !important;
   border-radius: 8px !important;
@@ -1079,14 +1252,25 @@ div.artistMore .mediaList {
 .aotified .albumTopBox.info::before,
 .aotified .artistTopBox.info::before,
 .aotified .artistTopBox.ratings > div::before,
-.aotified .trackListTable::before,
+.aotified .trackListTable:not(.small)::before,
 .aotified .reviewTextBox::before,
 .aotified .userAreaButtons::before,
+.aotified .albumReviewRow::before,
+.aotified .rightBox > .commentRow::before,
+.aotified .ratingRowContainer::before,
+.aotified .section > .commentRow::before,
+.aotified .userListRow.profile::before,
+.aotified .notificationRow::before,
+.aotified .newsBlockLarge::before,
+.aotified .userReviewBlock::before,
+.aotified .userReviewHeader::before,
+.aotified .statsBlock::before,
+.aotified .aboutUser::before,
 .aotified #ratingBlock::before,
 .aotified #currentRatingBlock::before,
-.aotified .albumReviewRow::before,
 .aotified #commentList > .commentRow::before,
-.aotified .rightBox > .commentRow::before {
+.aotified #albumOutput:has(.pageSelectRow)::before,
+.aotified #ratingDistribution .dist::before, .aotified-panel::before, .aotified-review.large .header.user::before, .aotified-review.container::before, .aotified-section.sub::before {
   position: absolute !important;
   border-radius: 8px !important;
   content: " " !important;
@@ -1095,32 +1279,81 @@ div.artistMore .mediaList {
   z-index: -1 !important;
   inset: 0 !important;
   border-radius: inherit !important;
-  box-shadow: inset 1px 1px 4px rgba(255, 255, 255, 0.02);
+  box-shadow: inset 1px 1px 4px rgba(var(--color), 0.02);
   pointer-events: none !important;
 }
+.aotified-section, .aotified-collections, .aotified-review.large .container, .aotified-review.large .header, .aotified-review.large .aotified-rating.box,
+.aotified .popularButton,
 .aotified .Hero,
-.aotified .section,
+.aotified .fullWidth:not(.inner),
+.aotified .bottomSquare,
+.aotified .userNav,
+.aotified .section:not(.searchForm),
 .aotified .yourRatingContainer,
 .aotified .rightContent .rightBox,
+.aotified .profileSidebar .rightBox,
 .aotified .largeSearch.center#toggleSearch,
 .aotified #facets,
-.aotified #albumOutput {
-  background: rgba(255, 255, 255, 0.05) !important;
-  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+.aotified #albumOutput,
+.aotified .footer,
+.aotified .footerButtons,
+.aotified .profileContent .releaseContainer,
+.aotified #favSection,
+.aotified .profileNav:not(.small),
+.aotified .wideLeft > .selectRow,
+.aotified .aotified-cover-card {
+  --color: 255,255,255;
+  background: rgba(var(--color), 0.05) !important;
+  border: 1px solid rgba(var(--color), 0.05) !important;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1) !important;
-  border-radius: 16px !important;
-  backdrop-filter: blur(4.7px) !important;
   -webkit-backdrop-filter: blur(4.7ppx) !important;
-  z-index: 0 !important;
+  backdrop-filter: blur(4.7px) !important;
+  border-radius: 16px !important;
   pointer-events: all !important;
+  z-index: 0 !important;
 }
+.aotified-section:not(.largeSearch), .aotified-collections:not(.largeSearch), .aotified-review.large .container:not(.largeSearch), .aotified-review.large .header:not(.largeSearch), .aotified-review.large .aotified-rating.box:not(.largeSearch),
+.aotified .popularButton:not(.largeSearch),
+.aotified .Hero:not(.largeSearch),
+.aotified .fullWidth:not(.inner):not(.largeSearch),
+.aotified .bottomSquare:not(.largeSearch),
+.aotified .userNav:not(.largeSearch),
+.aotified .section:not(.searchForm):not(.largeSearch),
+.aotified .yourRatingContainer:not(.largeSearch),
+.aotified .rightContent .rightBox:not(.largeSearch),
+.aotified .profileSidebar .rightBox:not(.largeSearch),
+.aotified .largeSearch.center#toggleSearch:not(.largeSearch),
+.aotified #facets:not(.largeSearch),
+.aotified #albumOutput:not(.largeSearch),
+.aotified .footer:not(.largeSearch),
+.aotified .footerButtons:not(.largeSearch),
+.aotified .profileContent .releaseContainer:not(.largeSearch),
+.aotified #favSection:not(.largeSearch),
+.aotified .profileNav:not(.small):not(.largeSearch),
+.aotified .wideLeft > .selectRow:not(.largeSearch),
+.aotified .aotified-cover-card:not(.largeSearch) {
+  padding: 20px 25px;
+}
+.aotified-section::before, .aotified-collections::before, .aotified-review.large .container::before, .aotified-review.large .header::before, .aotified-review.large .aotified-rating.box::before,
+.aotified .popularButton::before,
 .aotified .Hero::before,
-.aotified .section::before,
+.aotified .fullWidth:not(.inner)::before,
+.aotified .bottomSquare::before,
+.aotified .userNav::before,
+.aotified .section:not(.searchForm)::before,
 .aotified .yourRatingContainer::before,
 .aotified .rightContent .rightBox::before,
+.aotified .profileSidebar .rightBox::before,
 .aotified .largeSearch.center#toggleSearch::before,
 .aotified #facets::before,
-.aotified #albumOutput::before {
+.aotified #albumOutput::before,
+.aotified .footer::before,
+.aotified .footerButtons::before,
+.aotified .profileContent .releaseContainer::before,
+.aotified #favSection::before,
+.aotified .profileNav:not(.small)::before,
+.aotified .wideLeft > .selectRow::before,
+.aotified .aotified-cover-card::before {
   position: absolute !important;
   border-radius: 16px !important;
   content: " " !important;
@@ -1129,8 +1362,11 @@ div.artistMore .mediaList {
   z-index: -1 !important;
   inset: 0 !important;
   border-radius: inherit !important;
-  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.1), inset 20px 20px 30px rgba(255, 255, 255, 0.02), inset -20px -20px 50px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 1px 1px 0px rgba(var(--color), 0.1), inset 20px 20px 30px rgba(var(--color), 0.02), inset -20px -20px 50px rgba(0, 0, 0, 0.1);
   pointer-events: none !important;
+}
+.aotified .facetContent .filterButtons {
+  display: none !important;
 }
 .aotified .facetContent #searchContentBox {
   border: 0 !important;
@@ -1166,6 +1402,9 @@ div.artistMore .mediaList {
   all: unset !important;
   display: flex !important;
 }
+.aotified .Hero .Hero__cover:has(.albumHeaderCover) {
+  --sizing: 120px !important;
+}
 .aotified .Hero .Hero__cover img {
   display: flex !important;
   position: relative !important;
@@ -1175,11 +1414,16 @@ div.artistMore .mediaList {
   margin: 0 !important;
 }
 .aotified .Hero .Hero__cover .cover img,
-.aotified .Hero .Hero__cover .artistImage {
+.aotified .Hero .Hero__cover .artistImage,
+.aotified .Hero .Hero__cover .empty {
   display: flex !important;
   height: var(--sizing) !important;
   width: var(--sizing) !important;
   aspect-ratio: 1/1 !important;
+  background: transparent !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: var(--zui-fg-muted) !important;
 }
 .aotified .Hero .Hero__cover .video img {
   width: fit-content !important;
@@ -1453,6 +1697,11 @@ div.artistMore .mediaList {
   text-align: left !important;
   gap: 8px !important;
 }
+.aotified .Hero .Hero__boxes .albumTopBox.info.slim,
+.aotified .Hero .Hero__boxes .artistTopBox.info.slim {
+  min-height: unset !important;
+  height: 100% !important;
+}
 .aotified .Hero .Hero__boxes .albumTopBox.info .detailsBlock,
 .aotified .Hero .Hero__boxes .artistTopBox.info .detailsBlock {
   display: flex !important;
@@ -1606,9 +1855,6 @@ div.artistMore .mediaList {
 .aotified .user .profileLayout .profileContent .section {
   display: flex !important;
   flex-direction: column !important;
-  background-color: var(--zui-box-1) !important;
-  border: 1px solid var(--zui-box-4) !important;
-  border-radius: var(--zui-br-16) !important;
   padding: 20px !important;
   gap: 10px !important;
   margin: 0 !important;
@@ -1632,9 +1878,6 @@ div.artistMore .mediaList {
 }
 .aotified .user .profileLayout .profileSidebar .rightBox {
   display: flex !important;
-  background-color: var(--zui-box-1) !important;
-  border: 1px solid var(--zui-box-4) !important;
-  border-radius: var(--zui-br-16) !important;
   flex-direction: column !important;
   padding: 20px !important;
   margin: 0 !important;
@@ -1648,24 +1891,9 @@ div.artistMore .mediaList {
 .aotified .user .profileLayout .profileSidebar .rightBox .userListRow {
   margin: 0 !important;
 }
-.aotified .user .profileLayout .profileSidebar .rightBox.donorBanner {
-  flex-direction: row !important;
-  padding: 20px !important;
-  background-color: var(--zui-success-box) !important;
-  border: 1px solid var(--zui-success) !important;
-  border-radius: var(--zui-br-8) !important;
-}
-.aotified .user .profileLayout .profileSidebar .rightBox.donorBanner div.fal {
-  font-family: var(--zui-font-icon) !important;
-  font-size: 2rem !important;
-}
 .aotified .user .profileLayout .profileSidebar .rightBox .aboutUser {
-  background-color: var(--zui-box-0) !important;
-  border: 1px solid var(--zui-box-4) !important;
-  border-radius: var(--zui-br-8) !important;
   padding: 10px 15px !important;
   margin: 0 !important;
-  margin-bottom: 20px !important;
 }
 .aotified .user .profileLayout .profileSidebar .profileInfo .profileDetails {
   width: 100% !important;
@@ -1727,9 +1955,6 @@ div.artistMore .mediaList {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  border: 1px solid var(--zui-box-4) !important;
-  background-color: var(--zui-box-0) !important;
-  border-radius: var(--zui-br-8) !important;
   text-align: center !important;
   padding: 15px !important;
 }
@@ -1798,7 +2023,7 @@ div.artistMore .mediaList {
 .aotified .artist .artistContent .facetContent > .filterRow.buttons {
   position: absolute !important;
   right: 25px !important;
-  top: 75px !important;
+  top: 85px !important;
   padding: 0 !important;
   margin: 0 !important;
   width: fit-content !important;
@@ -1905,93 +2130,11 @@ div.artistMore .mediaList {
 .aotified .artist .artistFooter .section:has(.noDisplay) {
   display: none !important;
 }
-.aotified .artist .artistFooter .section:has(.noDisplay) ~ .relatedArtists .artistsBlock {
-  grid-template-rows: 1fr !important;
-  grid-template-columns: repeat(10, 1fr) !important;
-}
 .aotified .artist .artistFooter .section .sectionHeading {
   margin: 0 !important;
 }
 .aotified .artist .artistFooter .section::after {
   display: none;
-}
-.aotified .artist .artistFooter .section.relatedArtists .artistsBlock {
-  display: grid !important;
-  grid-template-rows: 1fr 1fr !important;
-  grid-template-columns: repeat(5, 1fr) !important;
-  height: fit-content !important;
-  width: 100% !important;
-  gap: 20px !important;
-}
-.aotified .artist .artistFooter .section.relatedArtists .artistsBlock .artistBlock {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  width: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  height: fit-content !important;
-  gap: 10px !important;
-}
-.aotified .artist .artistFooter .section.relatedArtists .artistsBlock .artistBlock .image {
-  display: flex !important;
-  aspect-ratio: 1/1 !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  width: 100% !important;
-  position: unset !important;
-}
-.aotified .artist .artistFooter .section.relatedArtists .artistsBlock .artistBlock .image img {
-  all: revert;
-  border-radius: 100% !important;
-  display: inline-block !important;
-  max-width: 100% !important;
-  height: auto !important;
-}
-.aotified .artist .artistFooter .section.mediaList {
-  width: 40% !important;
-}
-.aotified .artist .artistFooter .section.mediaList .trackListTable {
-  display: flex !important;
-  width: 100% !important;
-  height: 100% !important;
-  padding: 20px !important;
-  margin: 0 !important;
-}
-.aotified .artist .artistFooter .section.mediaList .trackListTable tbody {
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: space-between !important;
-  width: 100% !important;
-  height: 100% !important;
-  gap: 5px !important;
-}
-.aotified .artist .artistFooter .section.mediaList .trackListTable tbody tr {
-  display: flex !important;
-  align-items: center !important;
-  width: 100% !important;
-  gap: 10px !important;
-}
-.aotified .artist .artistFooter .section.mediaList .trackListTable tbody tr td {
-  border: 0 !important;
-  padding: 0 !important;
-}
-.aotified .artist .artistFooter .section.mediaList .trackListTable tbody tr .coverart img {
-  border-radius: var(--zui-br-8) !important;
-  border: 1px solid var(--zui-box-5) !important;
-}
-.aotified .artist .artistFooter .section.mediaList .trackListTable tbody tr .trackRating {
-  aspect-ratio: 1/1 !important;
-  border: 1px solid var(--zui-box-5) !important;
-  border-radius: var(--zui-br-8) !important;
-  padding: 8px !important;
-}
-.aotified .artist .artistFooter .section.mediaList .trackListTable tbody tr .songAlbum {
-  width: 100% !important;
-  height: fit-content !important;
-}
-.aotified .artist .artistFooter .section.mediaList .trackListTable tbody tr .songAlbum .gray-font {
-  margin: 0 !important;
 }
 
 .dropdownMenu {
@@ -2022,6 +2165,7 @@ div.artistMore .mediaList {
 
 .wideLeft,
 .footerContent {
+  height: fit-content !important;
   max-width: 100% !important;
 }
 
@@ -2034,17 +2178,16 @@ div.artistMore .mediaList {
   gap: 15px !important;
 }
 
-.overlay {
-  position: fixed !important;
-  top: 0 !important;
-  right: 0 !important;
+.rightBox.donorBanner {
+  padding: 20px !important;
+  flex-direction: row !important;
+  background-color: var(--zui-success-box) !important;
+  border: 1px solid var(--zui-success) !important;
+  border-radius: var(--zui-br-8) !important;
 }
-.overlay .content {
-  position: absolute !important;
-  top: 50% !important;
-  right: 50% !important;
-  margin: 0 !important;
-  transform: translate(50%, -50%) !important;
+.rightBox.donorBanner div.fal {
+  font-family: var(--zui-font-icon) !important;
+  font-size: 2rem !important;
 }
 
 .adTagWide,
@@ -2076,28 +2219,6 @@ br[style="clear:both;"],
   display: none !important;
 }
 
-.wideLeft:has(#userListRow) .selectRow {
-  position: relative !important;
-  margin-bottom: 10px !important;
-  float: none !important;
-}
-
-.fullWidth,
-.wideLeft,
-.rightContent,
-.footerContent {
-  background-color: var(--zui-box-1) !important;
-  border: 1px solid var(--zui-box-4) !important;
-  border-radius: var(--zui-br-16) !important;
-  padding: 20px 25px !important;
-}
-.fullWidth:has(.albumBlock) .dotDropMenuContainer:has(~ .albumHeadline.userReview),
-.wideLeft:has(.albumBlock) .dotDropMenuContainer:has(~ .albumHeadline.userReview),
-.rightContent:has(.albumBlock) .dotDropMenuContainer:has(~ .albumHeadline.userReview),
-.footerContent:has(.albumBlock) .dotDropMenuContainer:has(~ .albumHeadline.userReview) {
-  padding-right: 25px !important;
-}
-
 .yourRatingContainer ~ .section {
   top: 20px !important;
 }
@@ -2106,12 +2227,10 @@ br[style="clear:both;"],
   margin-right: 0 !important;
 }
 
-.section {
+.section,
+.sectionHeading,
+.sectionHeading.listItemHeading {
   margin: 0 !important;
-  margin-bottom: 15px !important;
-}
-.section:last-child {
-  margin-bottom: 0 !important;
 }
 
 .small-font {
@@ -2152,10 +2271,6 @@ br[style="clear:both;"],
   background-color: var(--zui-box-5) !important;
   border-color: var(--zui-box-7) !important;
   color: var(--zui-fg-primary) !important;
-}
-
-.overlay .content:has(#genreMessage) .tabContainer ~ #addGenre {
-  padding-right: 0 !important;
 }
 
 #correctionPage .albumEditCol.userInput .textLine,
@@ -2388,8 +2503,9 @@ input#tag:focus {
   display: none !important;
 }
 #nav #content .profile {
+  position: relative !important;
   background: transparent !important;
-  display: inline-flex !important;
+  display: flex !important;
 }
 #nav #content .profile #accountLinks {
   position: absolute !important;
@@ -2420,33 +2536,14 @@ input#tag:focus {
   align-self: center !important;
   padding: 0 !important;
   margin-right: 0 !important;
-  margin-top: 3px !important;
   top: 0 !important;
 }
 #nav #content .profile .userName {
   display: none !important;
 }
 
-/* related artists, media list */
-.relatedArtists,
-.mediaList {
-  background-color: var(--zui-box-2) !important;
-  border: 1px solid var(--zui-box-5) !important;
-  border-radius: var(--zui-br-8) !important;
-  padding: 20px 25px !important;
-  margin: 0 !important;
-  max-width: 445px !important;
-}
-
-.mediaList {
-  margin-right: 15px !important;
-}
-
 /* artist facet */
 .facetColumn {
-  background-color: var(--zui-box-2) !important;
-  border: 1px solid var(--zui-box-5) !important;
-  border-radius: var(--zui-br-8) !important;
   padding: 20px 25px !important;
   margin: 0 !important;
   margin-right: 25px !important;
@@ -2515,7 +2612,6 @@ input#tag:focus {
   align-items: center !important;
   background: transparent !important;
   margin: 0 !important;
-  margin-bottom: 20px !important;
 }
 
 .largeSearch .searchImage {
@@ -2747,13 +2843,30 @@ html:has(#www_settings) .profileHeadRight {
   flex-direction: column !important;
 }
 
+.profileAccount {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+.profileAccount .profileImage,
+.profileAccount .profileName {
+  margin: 0 !important;
+  padding: 0 !important;
+  height: fit-content !important;
+  line-height: normal !important;
+}
+
+.userNav {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 15px 20px !important;
+}
+
 .profileNav {
   position: relative !important;
   display: inline-flex !important;
   justify-content: space-between !important;
-  background-color: var(--zui-box-1) !important;
-  border: 1px solid var(--zui-box-4) !important;
-  border-radius: var(--zui-br-8) !important;
   padding: 10px 100px !important;
   width: 100% !important;
   height: fit-content !important;
@@ -2889,6 +3002,9 @@ html:has(#www_settings) .profileHeadRight {
 .sectionHeading .favoritePopup {
   margin-right: auto !important;
 }
+.sectionHeading:has(#homePopularLink, #homeNewReleasesAll) .viewAll {
+  margin: 0 !important;
+}
 .sectionHeading a {
   color: var(--zui-fg-primary) !important;
   letter-spacing: 0.9px !important;
@@ -2897,10 +3013,15 @@ html:has(#www_settings) .profileHeadRight {
 .sectionHeading #homeNewReleasesLink,
 .sectionHeading #homePopularLink {
   margin: 0 !important;
+  margin-left: auto !important;
 }
 .sectionHeading .viewAll {
   padding: 0 !important;
   margin: 0 !important;
+  text-wrap: nowrap !important;
+}
+.sectionHeading .viewAll button {
+  text-wrap: inherit !important;
 }
 .sectionHeading .viewAll a,
 .sectionHeading .viewAll i {
@@ -2909,8 +3030,8 @@ html:has(#www_settings) .profileHeadRight {
 }
 
 .headline {
-  margin-bottom: 20px !important;
-  font-size: 30px;
+  margin: 0 !important;
+  font-size: 30px !important;
   color: var(--zui-fg-primary) !important;
   font-weight: 600 !important;
 }
@@ -2925,6 +3046,9 @@ html:has(#www_settings) .profileHeadRight {
   font-weight: 600 !important;
 }
 
+.sectionTitle {
+  margin: 0 !important;
+}
 .sectionTitle::after, .sectionTitle::before {
   background-color: var(--zui-box-5) !important;
 }
@@ -2936,6 +3060,7 @@ html:has(#www_settings) .profileHeadRight {
   background-color: var(--zui-box-1) !important;
   border-radius: var(--zui-br-16) !important;
   border: 1px solid var(--zui-box-5) !important;
+  margin: 0 !important;
 }
 .sectionButton a {
   color: var(--zui-fg-muted) !important;
@@ -3036,9 +3161,6 @@ html:has(#www_settings) .profileHeadRight {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  background-color: var(--zui-box-2) !important;
-  border: 1px solid var(--zui-box-5) !important;
-  border-radius: var(--zui-br-8) !important;
   padding: 5px 10px !important;
   margin-bottom: 5px !important;
   height: fit-content !important;
@@ -3046,27 +3168,14 @@ html:has(#www_settings) .profileHeadRight {
   line-height: normal !important;
   text-align: center !important;
 }
-.rightContent .listItem.selected, .rightContent .listItem:hover {
-  background-color: var(--zui-box-5) !important;
-  color: var(--zui-fg-primary) !important;
-}
 .rightContent .aboutUser {
-  background-color: var(--zui-box-2) !important;
-  border: 1px solid var(--zui-box-5) !important;
-  border-radius: var(--zui-br-8) !important;
   padding: 10px 15px !important;
   margin: 0 !important;
   margin-bottom: 15px !important;
 }
-.rightContent .sectionHeading {
-  margin-bottom: 10px !important;
-}
 
 /* rating dist */
 .dist {
-  background-color: var(--zui-box-2) !important;
-  border: 1px solid var(--zui-box-5) !important;
-  border-radius: var(--zui-br-8) !important;
   padding: 10px 15px !important;
   margin: 0 !important;
   border-collapse: separate !important;
@@ -3096,20 +3205,6 @@ html:has(#www_settings) .profileHeadRight {
 .albumBlock {
   padding: 0 !important;
   margin: 0 !important;
-  margin-bottom: 30px !important;
-  margin-right: 20px !important;
-}
-.albumBlock .type.functions .dotDropMenuContainer {
-  margin: 0 !important;
-}
-.albumBlock.small {
-  width: 14.3333333333% !important;
-}
-.albumBlock.five {
-  width: 17.6666666666% !important;
-}
-.albumBlock.three {
-  width: 33% !important;
 }
 .albumBlock .ratingRowContainer {
   border: 0 !important;
@@ -3241,6 +3336,7 @@ html:has(#www_settings) .profileHeadRight {
 /* select row */
 .selectRow {
   border: 0 !important;
+  margin: 0 !important;
 }
 .selectRow .selectBox {
   color: var(--text-subtitle) !important;
@@ -3597,30 +3693,6 @@ section#critics .albumReviewRow div:has(> .albumReviewRating) .albumReviewRating
   border: 0 !important;
 }
 
-.rightBox .row:has(.artistTitle) {
-  display: inline-flex !important;
-  background-color: var(--zui-box-2) !important;
-  border: 1px solid var(--zui-box-5) !important;
-  border-radius: var(--zui-br-8) !important;
-  padding: 15px !important;
-  width: 100% !important;
-}
-.rightBox .row:has(.artistTitle) .albumTitle {
-  white-space: wrap !important;
-}
-.rightBox .row:has(.artistTitle) div:has(.rating) {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  flex-direction: column !important;
-  min-width: 30px !important;
-  min-height: 30px !important;
-}
-.rightBox .row:has(.artistTitle) div:has(.rating) .rating {
-  margin-top: 0 !important;
-}
-
-/* album page your review container */
 #guidelines {
   margin: 0 !important;
 }
@@ -3889,6 +3961,17 @@ section#critics .albumReviewRow div:has(> .albumReviewRating) .albumReviewRating
   font-size: 20px !important;
 }
 
+.dotDropMenuContainer {
+  display: flex !important;
+  align-items: center !important;
+}
+
+span[itemprop=itemReviewed] {
+  position: absolute !important;
+  inset: 0 !important;
+  pointer-events: none !important;
+}
+
 /* rating block */
 .ratingBlock {
   padding-top: 0 !important;
@@ -3911,8 +3994,7 @@ section#critics .albumReviewRow div:has(> .albumReviewRating) .albumReviewRating
 /* footer */
 .footer {
   background: transparent !important;
-  padding-top: 0 !important;
-  padding-bottom: 60px !important;
+  padding: 20px !important;
   margin-top: 15px !important;
 }
 
@@ -3925,12 +4007,27 @@ section#critics .albumReviewRow div:has(> .albumReviewRating) .albumReviewRating
   margin-top: auto !important;
 }
 
+.footerButton {
+  border-radius: var(--zui-br-8) !important;
+  border: 1px solid !important;
+}
+.footerButton.spotify {
+  background-color: var(--zui-success-box) !important;
+  border-color: var(--zui-success) !important;
+}
 .footerButton.donate {
-  display: none !important;
+  background-color: var(--zui-info-box) !important;
+  border-color: var(--zui-info) !important;
 }
 
 .footerButtons {
-  padding-left: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: unset !important;
+  margin: 0 !important;
+  width: 100% !important;
+  gap: 15px !important;
 }
 
 /* main page popular review */
@@ -3940,9 +4037,8 @@ section#critics .albumReviewRow div:has(> .albumReviewRating) .albumReviewRating
 .fullWidth.popularHome .userReviewBlock {
   position: relative !important;
   padding: 20px 25px !important;
-  margin-right: 15px !important;
-  min-height: 530px !important;
-  width: 32.5% !important;
+  min-height: 350px !important;
+  margin: 0 !important;
 }
 .fullWidth.popularHome .userReviewBlock div:has(> .actionContainer) {
   position: absolute !important;
@@ -4148,23 +4244,42 @@ section#critics .albumReviewRow div:has(> .albumReviewRating) .albumReviewRating
   color: var(--zui-fg-muted) !important;
 }
 
+.itemList {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 8px;
+}
+.itemList .item {
+  display: flex !important;
+  align-items: center !important;
+  flex: 1 1 auto !important;
+  background: transparent !important;
+  box-sizing: border-box !important;
+  font-size: 1rem !important;
+  line-height: normal !important;
+  gap: 10px;
+}
+.itemList .item .ratingBlock {
+  margin: 0 !important;
+  margin-left: auto !important;
+  padding: 0 !important;
+}
+.itemList .item img {
+  width: 50px !important;
+}
+
 .squareList {
   flex: 1 1 auto !important;
-  /* make it grow to fill */
   display: flex !important;
-  /* make its children align vertically */
   flex-direction: column !important;
   justify-content: space-between;
-  /* optional – distribute list items nicely */
   height: 100% !important;
   min-height: 350px !important;
   width: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
   border-collapse: collapse !important;
-  border: 1px solid var(--zui-box-5) !important;
-  border-radius: var(--zui-br-8) !important;
-  background-color: var(--zui-box-2) !important;
   box-sizing: border-box !important;
   overflow: hidden !important;
 }
@@ -4173,7 +4288,6 @@ section#critics .albumReviewRow div:has(> .albumReviewRating) .albumReviewRating
   align-items: center !important;
   justify-content: space-between !important;
   flex: 1 1 auto !important;
-  /* makes rows fill equally */
   border-bottom: 1px solid var(--zui-box-5) !important;
   background: transparent !important;
   box-sizing: border-box !important;
@@ -4249,27 +4363,51 @@ section#critics .albumReviewRow div:has(> .albumReviewRating) .albumReviewRating
 
 .trackListTable,
 #rateTracklist {
-  background-color: var(--zui-box-2) !important;
-  border: 1px solid var(--zui-box-5) !important;
-  border-radius: var(--zui-br-8) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
   padding: 0 !important;
 }
-.trackListTable .trackListTable,
-#rateTracklist .trackListTable {
-  padding: 15px !important;
+.trackListTable.small tbody,
+#rateTracklist.small tbody {
+  gap: 8px !important;
+  padding: 0 20px !important;
+}
+.trackListTable tbody,
+#rateTracklist tbody {
+  display: inherit !important;
+  flex-direction: inherit !important;
+  width: inherit !important;
+  gap: 10px !important;
 }
 .trackListTable .coverart img,
 #rateTracklist .coverart img {
   width: 50px !important;
   height: 50px !important;
-}
-.trackListTable tr:last-child td,
-#rateTracklist tr:last-child td {
-  border: 0 !important;
+  border-radius: var(--zui-br-8) !important;
 }
 .trackListTable .trackSelected,
 #rateTracklist .trackSelected {
   background-color: var(--zui-box-5) !important;
+}
+.trackListTable tr,
+#rateTracklist tr {
+  display: flex !important;
+  align-items: center !important;
+  border: 0 !important;
+  width: 100% !important;
+  gap: 15px !important;
+  border: 0 !important;
+}
+.trackListTable tr:empty,
+#rateTracklist tr:empty {
+  display: none !important;
+}
+.trackListTable tr .trackRating,
+#rateTracklist tr .trackRating {
+  margin-left: auto !important;
+  padding: 15px !important;
+  font-size: 1.2rem !important;
 }
 .trackListTable.large,
 #rateTracklist.large {
@@ -4279,12 +4417,11 @@ section#critics .albumReviewRow div:has(> .albumReviewRating) .albumReviewRating
 }
 .trackListTable.large tr,
 #rateTracklist.large tr {
-  display: inline-flex !important;
+  display: flex !important;
   align-items: center !important;
   border: 0 !important;
   width: 100% !important;
   padding: 15px !important;
-  border-bottom: var(--zui-box-5) 1px solid !important;
   gap: 15px !important;
 }
 .trackListTable.large .songMenuToggle,
@@ -4387,20 +4524,6 @@ section#critics .albumReviewRow div:has(> .albumReviewRating) .albumReviewRating
   margin: 0 !important;
 }
 
-.trackListTable.small tbody {
-  padding: 10px 15px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  flex-wrap: nowrap !important;
-  gap: 10px !important;
-}
-.trackListTable.small tr {
-  width: 100% !important;
-}
-.trackListTable.small tr:empty {
-  display: none !important;
-}
-
 #rateTracklist table tr {
   display: flex !important;
   align-items: center !important;
@@ -4461,8 +4584,7 @@ section#critics .albumReviewRow div:has(> .albumReviewRating) .albumReviewRating
 #tracklist .trackListTable tr {
   display: inline-flex !important;
   width: 100% !important;
-  border-bottom: 1px solid var(--zui-box-6) !important;
-  padding: 10px 15px !important;
+  padding: 5px 12px !important;
   gap: 10px !important;
 }
 #tracklist .trackListTable tr:last-child {
@@ -4562,10 +4684,6 @@ section#critics .albumReviewRow div:has(> .albumReviewRating) .albumReviewRating
   word-break: break-word !important;
 }
 
-.mediaList .trackListTable {
-  border: 0 !important;
-}
-
 /* menu toggle */
 .userListMenuToggle,
 .selfMenuToggle,
@@ -4602,15 +4720,21 @@ section#critics .albumReviewRow div:has(> .albumReviewRating) .albumReviewRating
 }
 
 /* notifications */
+.notificationBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
 .notificationRow {
-  background-color: var(--zui-box-2) !important;
-  border: 1px solid var(--zui-box-5) !important;
-  border-radius: var(--zui-br-8) !important;
-  margin-bottom: 10px !important;
+  display: flex !important;
+  align-items: center !important;
+  margin: 0 !important;
   padding: 15px !important;
   text-indent: 0 !important;
+  gap: 8px !important;
 }
-.notificationRow:last-child {
+.notificationRow .gray-font {
   margin: 0 !important;
 }
 
@@ -4637,15 +4761,12 @@ section#critics .albumReviewRow div:has(> .albumReviewRating) .albumReviewRating
 /*  user review header */
 .userReviewHeader {
   display: flex !important;
-  background-color: var(--zui-box-2) !important;
-  border: 1px solid var(--zui-box-5) !important;
-  border-radius: var(--zui-br-8) !important;
   height: fit-content !important;
-  margin-bottom: 20px !important;
   padding: 20px !important;
+  margin: 0 !important;
 }
-.userReviewHeader .clear {
-  display: none !important;
+.userReviewHeader .cover {
+  width: 160px !important;
 }
 .userReviewHeader .userReviewScoreBox {
   all: unset !important;
@@ -4858,7 +4979,7 @@ div[id^=newReply]:empty {
 }
 .replyContainer {
   /* 		.commentRow + div + .commentBox {
-  	margin-top: 20px !important;
+    margin-top: 20px !important;
   } */
 }
 .replyContainer .commentRow {
@@ -4866,10 +4987,6 @@ div[id^=newReply]:empty {
 }
 .replyContainer .commentRow .commentImage {
   margin-right: 15px !important;
-}
-
-.overlay .commentBox {
-  margin-top: 20px !important;
 }
 
 div:has(> button) {
@@ -4924,18 +5041,46 @@ div:has(> button) {
   background-color: var(--zui-box-5) !important;
 }
 
+.filterRow {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+.filterRow .menuDropFloatRight {
+  display: flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+}
+.filterRow .menuDropFloatRight .menuDrop,
+.filterRow .menuDropFloatRight .menuDropText {
+  margin: 0 !important;
+}
+.filterRow .menuDropFloatRight .menuDropSelectedText {
+  display: flex !important;
+}
+
+.section,
+.wideLeft,
+.fullWidth {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px;
+}
 .section #credits,
-.wideLeft #credits {
+.wideLeft #credits,
+.fullWidth #credits {
   margin-bottom: 25px !important;
 }
 .section > .commentBox .commentBoxContainer,
-.wideLeft > .commentBox .commentBoxContainer {
+.wideLeft > .commentBox .commentBoxContainer,
+.fullWidth > .commentBox .commentBoxContainer {
   padding: 10px 0 !important;
   border: 0 !important;
   background: 0 !important;
 }
 .section .commentBoxContainer,
-.wideLeft .commentBoxContainer {
+.wideLeft .commentBoxContainer,
+.fullWidth .commentBoxContainer {
   background-color: var(--zui-box-2) !important;
   border: 1px solid var(--zui-box-5) !important;
   border-radius: var(--zui-br-8) !important;
@@ -4949,12 +5094,14 @@ div:has(> button) {
   gap: 10px !important;
 }
 .section .commentBoxContainer .commentTextBox,
-.wideLeft .commentBoxContainer .commentTextBox {
+.wideLeft .commentBoxContainer .commentTextBox,
+.fullWidth .commentBoxContainer .commentTextBox {
   padding: 8px 10px !important;
   min-height: 35px !important;
 }
 .section .commentBoxContainer .commentContainer,
-.wideLeft .commentBoxContainer .commentContainer {
+.wideLeft .commentBoxContainer .commentContainer,
+.fullWidth .commentBoxContainer .commentContainer {
   display: inline-flex !important;
   align-items: flex-start !important;
   justify-content: center !important;
@@ -4964,28 +5111,34 @@ div:has(> button) {
   min-height: 35px !important;
 }
 .section .commentBoxContainer .commentContainer .commentTextBox.small,
-.wideLeft .commentBoxContainer .commentContainer .commentTextBox.small {
+.wideLeft .commentBoxContainer .commentContainer .commentTextBox.small,
+.fullWidth .commentBoxContainer .commentContainer .commentTextBox.small {
   min-height: 34px !important;
   min-height: unset !important;
 }
 .section .commentBoxContainer .commentContainer div:has(> .insertReviewReply),
-.wideLeft .commentBoxContainer .commentContainer div:has(> .insertReviewReply) {
+.wideLeft .commentBoxContainer .commentContainer div:has(> .insertReviewReply),
+.fullWidth .commentBoxContainer .commentContainer div:has(> .insertReviewReply) {
   margin: 0 !important;
   height: 34px !important;
 }
 .section .commentBoxContainer .commentContainer div:has(> .insertReviewReply) .insertReviewReply,
-.wideLeft .commentBoxContainer .commentContainer div:has(> .insertReviewReply) .insertReviewReply {
+.wideLeft .commentBoxContainer .commentContainer div:has(> .insertReviewReply) .insertReviewReply,
+.fullWidth .commentBoxContainer .commentContainer div:has(> .insertReviewReply) .insertReviewReply {
   padding: 0 !important;
 }
 .section .commentBoxContainer .commentContainer div:has(> .insertReviewReply) .insertReviewReply,
 .section .commentBoxContainer .commentContainer div:has(> .insertReviewReply) .smallButton,
 .wideLeft .commentBoxContainer .commentContainer div:has(> .insertReviewReply) .insertReviewReply,
-.wideLeft .commentBoxContainer .commentContainer div:has(> .insertReviewReply) .smallButton {
+.wideLeft .commentBoxContainer .commentContainer div:has(> .insertReviewReply) .smallButton,
+.fullWidth .commentBoxContainer .commentContainer div:has(> .insertReviewReply) .insertReviewReply,
+.fullWidth .commentBoxContainer .commentContainer div:has(> .insertReviewReply) .smallButton {
   width: 100% !important;
   height: 100% !important;
 }
 .section .commentBoxContainer .commentImage,
-.wideLeft .commentBoxContainer .commentImage {
+.wideLeft .commentBoxContainer .commentImage,
+.fullWidth .commentBoxContainer .commentImage {
   margin: 0 !important;
   width: 35px !important;
   height: 35px !important;
@@ -5013,7 +5166,7 @@ div:has(> button) {
   position: relative !important;
   background: none !important;
   border: none !important;
-  padding: 8px 12px 8px 20px !important;
+  padding: 0 12px 0 20px !important;
   margin: 0 !important;
   transition: background 0.2s ease !important;
 }
@@ -5025,13 +5178,12 @@ div:has(> button) {
   content: "";
   position: absolute;
   left: -2px;
-  top: 13px;
+  top: 5px;
   width: 6px;
   height: 6px;
   background: var(--zui-fg-secondary) !important;
-  outline: 3px solid var(--zui-box-1) !important;
   border-radius: 50%;
-  z-index: 992 !important;
+  z-index: 11 !important;
 }
 .rightBox .row::after {
   content: "";
@@ -5039,8 +5191,9 @@ div:has(> button) {
   left: 0px;
   top: -5px;
   bottom: 0;
-  border-left: 2px dashed var(--zui-box-6) !important;
-  z-index: 991 !important;
+  border-left: 2px solid var(--zui-box-6) !important;
+  z-index: 10 !important;
+  height: calc(100% + 20px) !important;
 }
 .rightBox .row.last::after {
   height: 18px !important;
@@ -5327,6 +5480,15 @@ div:has(> button) {
 }
 .fullWidth:has(.artistHeader) .filterRow.buttons .highlight {
   display: none !important;
+}
+
+.userBlock {
+  display: flex !important;
+  padding: 0 !important;
+  width: 100% !important;
+}
+.userBlock a {
+  all: inherit !important;
 }
 
 .fullWidth:has(.albumTopBox) .detailRow,
@@ -5801,6 +5963,18 @@ div:has(> button) {
   height: fit-content !important;
 }
 
+.controlsGroup {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between;
+  width: 100%;
+}
+.controlsGroup .selectRow,
+.controlsGroup .filterRow {
+  display: flex !important;
+  width: fit-content !important;
+}
+
 /* artist headers */
 .artistHeader {
   display: inline-grid !important;
@@ -6092,6 +6266,20 @@ table.discussion thead {
   font-size: 35px !important;
 }
 
+.popularButton {
+  padding: 10px 15px !important;
+}
+.popularButton a, .popularButton span {
+  background: 0 !important;
+  border: 0 !important;
+  padding: 0 !important;
+  font-size: 1.3rem !important;
+}
+
+.rightContent .rightBox.donorBanner {
+  flex-direction: row !important;
+}
+
 .songInfo {
   padding: 20px 25px !important;
   align-items: center !important;
@@ -6139,27 +6327,15 @@ table.discussion thead {
   padding: 20px !important;
 }
 
-.left:has(.bottomSquare) {
-  display: flex !important;
-  background-color: var(--zui-box-1) !important;
-  border: 1px solid var(--zui-box-4) !important;
-  border-radius: var(--zui-br-8) !important;
-  padding: 20px !important;
-  gap: 20px !important;
-}
-.left:has(.bottomSquare) .clear {
-  display: none !important;
-}
-
 .bottomSquare {
   display: flex !important;
   flex-direction: column !important;
   max-height: 400px !important;
   margin: 0 !important;
-  padding: 0 !important;
   border: 0 !important;
   background: none !important;
   box-sizing: border-box !important;
+  gap: 12px;
 }
 .bottomSquare .sectionHeading {
   flex: 0 0 auto !important;
@@ -6171,20 +6347,8 @@ table.discussion thead {
 }
 
 .thisDay {
-  background-color: var(--zui-box-2) !important;
-  border: 1px solid var(--zui-box-5) !important;
-  border-radius: var(--zui-br-8) !important;
   padding: 10px 20px !important;
   margin-left: 0 !important;
-}
-.thisDay .albumBlock.one {
-  width: 100% !important;
-}
-.thisDay .albumBlock.one .ratingRow {
-  margin-top: 10px !important;
-}
-.thisDay .albumBlock.one:nth-child(3) {
-  margin: 0 !important;
 }
 
 .wideLeft:has(.largeSearch) .headline {
@@ -6192,6 +6356,12 @@ table.discussion thead {
   margin-bottom: 20px !important;
   width: 100% !important;
 }
+.wideLeft:has(.largeSearch) .largeSearch:not(#genreSearch) {
+  position: absolute !important;
+  right: 0px !important;
+  top: 20px !important;
+}
+
 .fullWidth:has(div[style="margin:20px 0;"] > a > .pageSelect.year) {
   position: relative !important;
 }
@@ -6215,7 +6385,7 @@ table.discussion thead {
 
 .gray-font {
   padding: 0 !important;
-  margin-bottom: 20px !important;
+  margin: 0 !important;
 }
 
 .fullWidth:has(.mediaHeader) {
@@ -6262,9 +6432,6 @@ table.discussion thead {
 }
 
 .newsworthyHome {
-  display: grid !important;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 20px auto auto;
   padding: 20px !important;
   gap: 15px !important;
 }
@@ -6275,13 +6442,10 @@ table.discussion thead {
   margin: 0 !important;
 }
 .newsworthyHome .newsBlockLarge {
-  background-color: var(--zui-box-2) !important;
-  border: 1px solid var(--zui-box-5) !important;
-  border-radius: var(--zui-br-8) !important;
   display: flex !important;
   flex-direction: column !important;
-  width: 100% !important;
   padding: 0 0 15px 0 !important;
+  width: 100% !important;
 }
 .newsworthyHome .newsBlockLarge .newsBlockLargeText {
   padding: 10px 15px 20px !important;
@@ -6505,29 +6669,7 @@ div:has(> .insertUserListComment) {
   width: 100% !important;
 }
 
-/* 	.follow {
-	background-color: var(--zui-box-2) !important;
-	border: 1px solid var(--zui-box-5) !important;;
-	border-radius: var(--zui-br-8) !important;
-	color: var(--button-text) !important;
-	padding: 8px 30px !important;
-	width: auto !important;
-	height: auto !important;
-	outline: 0 !important;
-	text-align: center !important;
-	font-weight: 600 !important;
-	line-height: normal !important;
-
-	&:hover {
-		background-color: var(--zui-box-2) !important;
-		border: 1px solid var(--zui-box-5) !important;;
-		border-radius: var(--zui-br-8) !important;
-	}
-} */
 .grayBox {
-  background-color: var(--zui-box-2) !important;
-  border: 1px solid var(--zui-box-5) !important;
-  border-radius: var(--zui-br-8) !important;
   color: var(--zui-fg-primary) !important;
   height: fit-content !important;
   width: 98.55555% !important;
@@ -6583,13 +6725,6 @@ div:has(> .insertUserListComment) {
   border: 1px solid var(--zui-box-6) !important;
   border-radius: var(--zui-br-8) !important;
   height: 30px !important;
-}
-
-.fullWidth:has(.profileNav.small) {
-  display: flex !important;
-  align-items: center !important;
-  width: 100% !important;
-  gap: 10px !important;
 }
 
 .noResultsMessage,
@@ -6663,20 +6798,6 @@ a:has(> img[src="https://cdn.albumoftheyear.org/artists/thumbs/default.jpg"]) im
   color: var(--zui-fg-muted) !important;
 }
 
-.selectRow:has(~ .subHeadline) {
-  max-width: max-content !important;
-}
-
-.subHeadline:has(~ .filterRow) {
-  float: left !important;
-  width: 100% !important;
-}
-
-.subHeadline ~ .filterRow {
-  position: absolute !important;
-  min-width: 90.7% !important;
-}
-
 div:has(#additionalArtistType),
 #performerContainer {
   margin-bottom: 10px !important;
@@ -6724,12 +6845,6 @@ div#performerContainer ~ br {
   margin-top: 0 !important;
 }
 
-.fullWidth:has(.tagColumn) .filterRow,
-.fullWidth:has(.noResults) .filterRow,
-.fullWidth:has(.noResultsMessage) .filterRow {
-  padding: 0 !important;
-}
-
 .albumReviewLinks.userReview {
   margin-top: 10px !important;
 }
@@ -6759,10 +6874,6 @@ div#performerContainer ~ br {
   color: var(--zui-fg-muted) !important;
   margin-bottom: 15px !important;
   text-align: center !important;
-}
-
-.fullWidth:has(.publicationHeader, .section > .filterRow) .pageSelectRow {
-  padding-right: 25px !important;
 }
 
 .albumReviewRow.showUser .userReviewImage.square {
@@ -7034,11 +7145,6 @@ div#performerContainer ~ br {
   padding: 0 !important;
 }
 
-.sectionHeading.listItemHeading {
-  margin-bottom: 15px !important;
-  padding: 0 !important;
-}
-
 .fullWidth.bestHome {
   padding: 25px !important;
   height: auto !important;
@@ -7277,31 +7383,6 @@ div#performerContainer ~ br {
   margin: 0 !important;
 }
 
-.fullWidth:has(.yearNav.noBottom) .thirdPartyLinks {
-  display: none !important;
-}
-.fullWidth:has(.yearNav.noBottom) .selectRow {
-  max-width: 50% !important;
-  position: absolute !important;
-}
-.fullWidth:has(.yearNav.noBottom) .filterRow {
-  z-index: 9999 !important;
-  float: right !important;
-  width: fit-content !important;
-  padding: 0 !important;
-}
-.fullWidth:has(.yearNav.noBottom) .headline {
-  float: left !important;
-  margin-top: 20px !important;
-  width: 88% !important;
-  text-align: center !important;
-}
-
-.albumReviewRow ~ .userReviewCounter {
-  margin-top: 20px !important;
-  margin-bottom: 20px !important;
-}
-
 .yearNav {
   display: flex !important;
   align-items: center !important;
@@ -7403,12 +7484,76 @@ div#performerContainer ~ br {
   min-width: 60.7% !important;
 }
 
-.facetContent ~ .clear {
-  margin-bottom: 15px !important;
+.mediaList {
+  width: 40% !important;
+}
+.mediaList .trackListTable {
+  display: flex !important;
+  width: 100% !important;
+  height: 100% !important;
+  flex: 1 1 100% !important;
+  padding: 20px !important;
+  margin: 0 !important;
+}
+.mediaList .trackListTable tbody {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  height: 100% !important;
+  flex: 1 1 100% !important;
+  gap: 5px !important;
+}
+.mediaList .trackListTable tbody tr {
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+  gap: 10px !important;
+}
+.mediaList .trackListTable tbody tr td {
+  border: 0 !important;
+  padding: 0 !important;
+}
+.mediaList .trackListTable tbody tr .coverart img {
+  border-radius: var(--zui-br-8) !important;
+  border: 1px solid var(--zui-box-5) !important;
+}
+.mediaList .trackListTable tbody tr .trackRating {
+  aspect-ratio: 1/1 !important;
+  border: 1px solid var(--zui-box-5) !important;
+  border-radius: var(--zui-br-8) !important;
+  padding: 8px !important;
+}
+.mediaList .trackListTable tbody tr .songAlbum {
+  width: 100% !important;
+  height: fit-content !important;
+}
+.mediaList .trackListTable tbody tr .songAlbum .gray-font {
+  margin: 0 !important;
 }
 
-.facetContent .selectRow {
-  min-width: 100% !important;
+.artistBlock {
+  display: flex !important;
+  flex-direction: column !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  gap: 10px !important;
+  width: 100% !important;
+}
+.artistBlock .image {
+  display: flex !important;
+  aspect-ratio: 1/1 !important;
+  position: relative !important;
+  width: inherit !important;
+  height: inherit !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.artistBlock .image img {
+  aspect-ratio: 1/1 !important;
+  position: unset !important;
+  width: 100% !important;
+  height: 100% !important;
 }
 
 /* global success/green messages */
@@ -7435,115 +7580,6 @@ div[style^="color:green;"] a {
 
 div[style^="color:green;"] {
   margin: 20px 0 !important;
-}
-
-/* global overlay */
-.www_overlay {
-  display: flex;
-  position: fixed !important;
-  inset: 0 !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  background-color: rgba(0, 0, 0, 0.6);
-  z-index: 9999999 !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-.www_overlay .inner {
-  position: absolute !important;
-  display: flex !important;
-  flex-direction: column !important;
-  min-width: 700px !important;
-  min-height: 500px !important;
-  max-height: 80vh !important;
-  max-width: 80vw !important;
-  padding: 0 !important;
-  border: 1px solid var(--zui-box-4) !important;
-  background-color: var(--zui-box-1) !important;
-  border-radius: var(--zui-br-16) !important;
-  z-index: 99999999999 !important;
-  overflow-x: hidden !important;
-  overflow-y: auto !important;
-  user-select: none;
-  resize: both;
-}
-.www_overlay .inner .header {
-  display: flex !important;
-  position: sticky !important;
-  justify-content: space-between !important;
-  flex-direction: row !important;
-  align-items: center !important;
-  background-color: var(--zui-box-2) !important;
-  border-bottom: 1px solid var(--zui-box-5) !important;
-  border-radius: var(--zui-br-16) var(--zui-br-16) 0 0 !important;
-  padding: 0 25px !important;
-  margin: 0 !important;
-  float: left !important;
-  width: 100% !important;
-  height: 50px !important;
-  min-height: 50px !important;
-  top: 0 !important;
-  right: 0 !important;
-  gap: 20px !important;
-  z-index: 999999 !important;
-}
-.www_overlay .inner .header hgroup {
-  display: inline-flex !important;
-  flex-direction: row !important;
-  align-items: center !important;
-  flex-wrap: wrap !important;
-  width: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  gap: 10px !important;
-  font-size: 1rem !important;
-}
-.www_overlay .inner .header hgroup h1 {
-  font-size: 1.2rem !important;
-}
-.www_overlay .inner .content {
-  display: flex !important;
-  background: 0 !important;
-  overflow-y: auto !important;
-  overflow-x: hidden !important;
-  height: 100% !important;
-  width: 100% !important;
-  flex: 1 1 100% !important;
-  padding: 30px !important;
-  user-select: text !important;
-}
-.www_overlay .inner .content:has(.loading) {
-  align-items: center !important;
-  justify-content: center !important;
-}
-.www_overlay .inner .content .lyricsBlock {
-  display: flex !important;
-  flex-direction: column !important;
-  flex-wrap: nowrap !important;
-  margin: 0 !important;
-  overflow-y: visible !important;
-  color: var(--zui-fg-primary) !important;
-  width: 100% !important;
-}
-.www_overlay .inner .content .lyricsBlock span {
-  margin-bottom: 5px !important;
-}
-.www_overlay .inner .content .lyricsBlock .meta {
-  font-style: italic !important;
-  color: var(--zui-fg-muted) !important;
-  margin-bottom: 5px !important;
-}
-.www_overlay .inner .content .lyricsBlock p {
-  margin: 0 !important;
-  padding: 0 !important;
-}
-.www_overlay .inner .content .lyricsBlock i {
-  color: var(--zui-fg-muted) !important;
-}
-.www_overlay .inner .content .lyricsBlock a[class^=ReferentFragment] {
-  color: var(--zui-fg-primary) !important;
 }
 
 .loading {
@@ -7597,7 +7633,7 @@ div[style^="color:green;"] {
   border-color: var(--zui-box-7) !important;
 }
 .overlay .content {
-  padding: 50px 0 0 30px !important;
+  padding: 0 !important;
   border: 1px solid var(--zui-box-4) !important;
   background-color: var(--zui-box-1) !important;
   border-radius: var(--zui-br-16) !important;
@@ -7617,16 +7653,12 @@ div[style^="color:green;"] {
 .overlay .content#imageOverlay {
   overflow-y: auto !important;
   width: fit-content !important;
-  padding: 70px 20px 20px 20px !important;
 }
 .overlay .content#imageOverlay img {
   all: unset !important;
   position: relative !important;
   height: 100% !important;
   width: 100% !important;
-}
-.overlay .content:has(.commentRow ~ .commentBox) {
-  padding: 70px 30px 30px 30px !important;
 }
 .overlay .content:has(.commentRow ~ .commentBox) .clear {
   display: none !important;
@@ -7639,9 +7671,6 @@ div[style^="color:green;"] {
 .overlay .content:has(.commentRow ~ .commentBox) .inner {
   padding: 0 !important;
   margin-top: 5px !important;
-}
-.overlay .content:has(.commentRow ~ .commentBox) .gray-font {
-  margin: 0 !important;
 }
 .overlay .content:has(.commentRow ~ .commentBox) .commentBoxContainer.reply {
   border: 0 !important;
@@ -7669,10 +7698,6 @@ div[style^="color:green;"] {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-}
-.overlay .center:has(.deleteFavorite), .overlay .center:has(.overlayClose) {
-  padding: 20px 20px 20px 0 !important;
-  gap: 20px !important;
 }
 .overlay .close {
   display: flex !important;
@@ -7771,9 +7796,6 @@ div[style^="color:green;"] {
 .overlay #newListForm ~ .inner tr {
   display: flex !important;
   align-items: center !important;
-  background-color: var(--zui-box-0) !important;
-  border: 1px solid var(--zui-box-4) !important;
-  border-radius: var(--zui-br-8) !important;
   margin-bottom: 5px !important;
   width: 100% !important;
   padding: 10px 15px !important;
@@ -7825,16 +7847,6 @@ div[style^="color:green;"] {
 }
 .overlay #suggestGenre br {
   display: none !important;
-}
-.overlay .content:has(#genreMessage) #genreMessage {
-  margin-top: 25px !important;
-  margin-right: 20px !important;
-}
-.overlay .content:has(#genreMessage) #addGenre {
-  padding-right: 30px !important;
-}
-.overlay .content:has(#genreMessage) .inner {
-  padding-top: 0 !important;
 }
 .overlay #addToListContent .editListAlbum {
   display: grid !important;
@@ -8247,53 +8259,28 @@ div[style^="color:green;"] {
 }
 
 /* correction page */
-#correctionPage br {
-  display: none !important;
-}
-#correctionPage .albumHeader {
-  display: flex !important;
-  align-items: center !important;
-  gap: 15px !important;
-}
-#correctionPage .albumHeader .albumHeaderCover {
-  margin: 0 !important;
-  width: 70px !important;
-}
-#correctionPage .albumHeader .headline {
-  height: fit-content !important;
-  margin: 0 !important;
-}
-#correctionPage .headline {
+.correction .headline {
   margin-top: 0 !important;
   margin-bottom: 10px !important;
 }
-#correctionPage .section:has(.logRow) {
-  display: flex !important;
-  flex-direction: column !important;
-}
-#correctionPage .logRow:empty,
-#correctionPage .logBox:has(> .logRow:empty),
-#correctionPage .sectionHeading:has(~ .logBox > .logRow:empty) {
-  display: none !important;
-}
-#correctionPage .logBox {
-  display: flex !important;
-  flex-direction: column !important;
-  flex-wrap: nowrap !important;
-  background-color: var(--zui-box-2) !important;
-  border: 1px solid var(--zui-box-5) !important;
-  border-radius: var(--zui-br-8) !important;
-  padding: 15px 10px !important;
-  gap: 8px !important;
-  margin-bottom: 15px;
-}
-#correctionPage .logBox .logRow {
+.correction .logRow {
   margin: 0 !important;
   padding: 0 !important;
   width: 100% !important;
   color: var(--zui-fg-muted) !important;
 }
-#correctionPage .correctionResponse {
+.correction .logRow:empty,
+.correction .logBox:has(> .logRow:empty),
+.correction .sectionHeading:has(~ .logBox > .logRow:empty) {
+  display: none !important;
+}
+.correction .logRow {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  color: var(--zui-fg-muted) !important;
+}
+.correction .correctionResponse {
   display: flex !important;
   flex-direction: column !important;
   background-color: var(--zui-box-1) !important;
@@ -8302,34 +8289,34 @@ div[style^="color:green;"] {
   margin-left: 50px !important;
   gap: 10px !important;
 }
-#correctionPage .correctionResponse .profilePic {
+.correction .correctionResponse .profilePic {
   display: none !important;
 }
-#correctionPage .correctionResponse .commentUserName {
+.correction .correctionResponse .commentUserName {
   font-size: 1.3rem !important;
   font-weight: bold !important;
 }
-#correctionPage .albumEditRow {
+.correction .albumEditRow {
   margin: 10px 0 !important;
 }
-#correctionPage #primaryArtist,
-#correctionPage #additionalArtistType {
+.correction #primaryArtist,
+.correction #additionalArtistType {
   background-color: var(--zui-box-0) !important;
   border-color: var(--zui-box-4) !important;
 }
-#correctionPage textarea {
+.correction textarea {
   min-height: 150px !important;
 }
-#correctionPage .grayBox {
+.correction .grayBox {
   min-width: 100% !important;
   margin: 15px 0 !important;
 }
-#correctionPage .correctionBox {
+.correction .correctionBox {
   border: 1px solid var(--zui-box-5) !important;
   background-color: var(--zui-box-2) !important;
   border-radius: var(--zui-br-8) !important;
 }
-#correctionPage .actionRow.corrections:empty {
+.correction .actionRow.corrections:empty {
   display: none !important;
 }
 
@@ -8549,37 +8536,6 @@ div[style^="color:green;"] {
   border-color: var(--zui-box-5) !important;
 }
 
-/* add cover page */
-.fullWidth:has(.addCoverBox) div[style="margin-bottom: 25px; border-bottom: 1px solid #e2e2e2;"]:has(.headline) {
-  display: inline-flex !important;
-  align-items: center !important;
-  border: 0 !important;
-  width: 100% !important;
-}
-.fullWidth:has(.addCoverBox) div[style="margin-bottom: 25px; border-bottom: 1px solid #e2e2e2;"]:has(.headline) img {
-  display: none !important;
-}
-.fullWidth:has(.addCoverBox) .headline,
-.fullWidth:has(.addCoverBox) .headline ~ div:has(strong) {
-  margin: 0 !important;
-  text-align: center !important;
-  width: 100% !important;
-}
-.fullWidth:has(.addCoverBox) .addCoverBox {
-  background-color: var(--zui-box-2) !important;
-  border: 1px solid var(--zui-box-4) !important;
-  border-radius: var(--zui-br-8) !important;
-}
-.fullWidth:has(.addCoverBox) .addCoverBox div[style="text-transform: uppercase; font-size: 11px; letter-spacing: 1px; color: #999; margin-bottom: 15px; font-weight: bold"] {
-  color: var(--text-primary) !important;
-  font-size: 15px !important;
-  letter-spacing: 0.9px !important;
-}
-.fullWidth:has(.addCoverBox) .addCoverBox div[style="text-transform: uppercase; font-size: 11px; letter-spacing: 1px; color: #999; margin-bottom: 15px; font-weight: bold"] ~ div {
-  letter-spacing: normal !important;
-  text-transform: none !important;
-}
-
 /* submit box, file input */
 input[type=submit].link,
 .inputFile {
@@ -8601,12 +8557,6 @@ input[type=submit].link:hover,
 
 .albumHeadline.userReview .albumTitle, .albumHeadline.userReview {
   width: fit-content !important;
-}
-
-.header,
-#centerContent,
-body {
-  background-color: var(--zui-box-0) !important;
 }
 
 .randomAlbumMessage {
@@ -8643,10 +8593,6 @@ body {
   display: flex !important;
   gap: 5px !important;
   margin: 0 !important;
-}
-
-*:has(> .selectRow) {
-  position: relative !important;
 }
 
 div:has(> .profileLink) {
@@ -8785,15 +8731,15 @@ body#AOTY-Addons {
 
 /*
 form[action="edit.php"] {
-	.editRow {
+.editRow {
 
-		.editTitle {
-		}
-		.editNote {
-		}
-		.editUserEntry {
-		}
-	}
+  .editTitle {
+  }
+  .editNote {
+  }
+  .editUserEntry {
+  }
+}
 }
 */
 /* userscript required */
@@ -9043,7 +8989,6 @@ div[style="color: green;"] {
 }
 #quick_access .shortcuts__content footer {
   padding: 15px !important;
-  border-top: 1px solid var(--zui-box-5) !important;
   justify-content: space-between !important;
   align-items: center !important;
   gap: 20px !important;
@@ -9107,43 +9052,6 @@ div[style="color: green;"] {
   background-color: var(--zui-box-5) !important;
 }
 
-/* settings */
-if hideYearEndBanner .headerYearEnd {
-  display: none !important;
-}
-
-if hideFooterButtons .footerButtons {
-  display: none !important;
-}
-
-if hideAdvertisements .buyAmazon {
-  display: none !important;
-}
-
-if imageMenus .image .menu .dotDropMenu.block {
-  position: absolute !important;
-  min-width: 180px !important;
-  right: -60px !important;
-  top: 25px !important;
-}
-@media (hover: hover) and (pointer: fine) {
-  if imageMenus .image:hover .menu {
-    display: block !important;
-  }
-}
-
-if experimentalTheme :root {
-  --zui-box-0: #010409;
-  --zui-box-1: #0d1117;
-  --zui-box-2: #151b23;
-  --zui-box-3: #19202b;
-  --zui-box-4: #1d2633;
-  --zui-box-5: #283344;
-  --zui-box-6: #38465b;
-  --zui-box-7: #3f4d64;
-  --zui-box-8: #546480;
-}
-
 /* fontawesome icons */
 .far,
 .fab,
@@ -9162,91 +9070,6 @@ if experimentalTheme :root {
 }
 
 /* test: albumBlock / navWrapper */
-.navWrapper {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  gap: 20px;
-}
-.navWrapper ~ .headline,
-.navWrapper ~ .subHeadline {
-  margin: 15px 0 20px !important;
-}
-.navWrapper ~ .headline ~ .listenRow.filter,
-.navWrapper ~ .subHeadline ~ .listenRow.filter {
-  display: flex !important;
-  height: fit-content !important;
-}
-.navWrapper ~ .headline ~ .listenRow.filter ~ .yearNav,
-.navWrapper ~ .subHeadline ~ .listenRow.filter ~ .yearNav {
-  margin: 10px 0 !important;
-}
-.navWrapper ~ .largeSearch.center,
-.navWrapper ~ .grayBox,
-.navWrapper ~ .albumHeader {
-  margin: 0 !important;
-  margin-top: 15px !important;
-  width: 100% !important;
-}
-.navWrapper ~ #albumOutput {
-  margin-top: 15px !important;
-}
-.navWrapper .selectRow,
-.navWrapper .filterRow {
-  margin: 0 !important;
-  padding: 0 !important;
-}
-.navWrapper .selectRow::after, .navWrapper .selectRow::before,
-.navWrapper .filterRow::after,
-.navWrapper .filterRow::before {
-  display: none !important;
-}
-.navWrapper .clear {
-  display: none !important;
-}
-.navWrapper .selectRow {
-  display: flex !important;
-  align-items: center !important;
-  gap: 12px !important;
-}
-.navWrapper .selectRow a {
-  display: flex !important;
-}
-.navWrapper .selectRow .selectBox {
-  padding: 0 !important;
-  margin: 0 !important;
-  line-height: normal !important;
-}
-.navWrapper .filterRow {
-  display: flex !important;
-  gap: 15px !important;
-}
-.navWrapper .filterRow .menuDropFloatRight {
-  display: flex !important;
-  align-items: center !important;
-  line-height: normal !important;
-  margin: 0 !important;
-  gap: 8px !important;
-}
-.navWrapper .filterRow .menuDrop {
-  margin: 0 !important;
-}
-.navWrapper .filterRow .menuDropSelected {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-.navWrapper .filterRow .menuDropSelectedText {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 5px !important;
-  padding: 0 !important;
-}
-.navWrapper .filterRow .menuDropSelectedText::after {
-  padding: 0 !important;
-}
-
 .newsContainer.large {
   display: flex !important;
   justify-content: space-between !important;
@@ -9352,6 +9175,13 @@ body.dark .distCount,
 body.dark .distCount a:visited,
 body.dark .distCount a {
   color: var(--zui-fg-muted) !important;
+}
+
+body .header, body .nav {
+  background: unset !important;
+  color: unset !important;
+  overflow: unset !important;
+  height: unset !important;
 }
 
 /*# sourceMappingURL=style.css.map */

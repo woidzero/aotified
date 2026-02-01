@@ -1,8 +1,8 @@
 {
   "name": "aotified",
   "scripts": {
-    "build": "node scripts/build.js",
-    "watch": "node scripts/build.js --watch"
+    "build": "bun build ./src/main.ts --outdir=./dist/ --sourcemap && bunx sass ./src/assets/style.scss ./dist/style.css --no-error-css",
+    "watch": "bun build ./src/main.ts --outdir=./dist/ --sourcemap --watch & bunx sass --watch ./src/assets/style.scss:./dist/style.css --no-error-css"
   },
   "devDependencies": {
     "@types/bun": "latest",
@@ -11,8 +11,6 @@
   "dependencies": {
     "@popperjs/core": "^2.11.8",
     "@types/jquery": "^3.5.33",
-    "esbuild": "^0.27.2",
-    "esbuild-sass-plugin": "^3.6.0",
     "jquery": "^3.7.1",
     "preact": "^10.28.2",
     "preact-render-to-string": "^6.6.5",

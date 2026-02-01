@@ -336,6 +336,8 @@ export const Global = (): Module => {
           }
         }
 
+        let rafId: number | null = null;
+
         function draw() {
           if (!cnv_ctx) return ctx.logger.error("can't get canvas context.");
           cnv_ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -349,10 +351,16 @@ export const Global = (): Module => {
 
           cnv_ctx.fill();
           update();
-          requestAnimationFrame(draw);
+          rafId = requestAnimationFrame(draw);
         }
 
         draw();
+
+        return () => {
+          if (rafId != null) cancelAnimationFrame(rafId);
+          $(window).off("resize", resize);
+          $canvas.remove();
+        };
       },
     })
   ])

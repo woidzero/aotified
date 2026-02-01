@@ -1,8 +1,9 @@
 // ==UserScript==
 // @name         [aotified]
 // @description  aoty addon
+// @author       woidzero
 // @namespace    https://dev.woid.world/
-// @version      1.0.5
+// @version      0
 // @match        https://*.albumoftheyear.org/*
 // @grant        GM_xmlhttpRequest
 // @connect      dev.woid.world
@@ -11,42 +12,72 @@
 // ==/UserScript==
 
 (() => {
+  "use strict";
+
   const DEV = true;
+  const CSS_KEY = "aotified:css";
 
-  const styleTag = document.createElement('style');
-  styleTag.id = 'aotified-style';
-  document.head.prepend(styleTag);
+  function ready(cb) {
+    if (document.head) return cb(document.head);
 
-  function loadCSS() {
-    const CSS_URL = DEV
-      ? `https://dev.woid.world/aotified/dist/style.css?ts=${Date.now()}`
-      : `https://dev.woid.world/aotified/dist/style.css`;
+    const obs = new MutationObserver(() => {
+      if (document.head) {
+        obs.disconnect();
+        cb(document.head);
+      }
+    });
 
+    obs.observe(document.documentElement, { childList: true, subtree: true });
+  }
+
+  let styleTag;
+
+  // instant cache inject
+  ready((head) => {
+    styleTag = document.createElement("style");
+    styleTag.id = "aotified-style";
+    styleTag.textContent = "body{visibility:hidden}";
+    head.prepend(styleTag);
+
+    if (!DEV) {
+      const cachedCSS = localStorage.getItem(CSS_KEY);
+
+      if (cachedCSS) {
+        styleTag.textContent = cachedCSS;
+        console.log("[aotified.loader] CSS from cache");
+      }
+    }
+
+    const script = document.createElement("script");
+    script.src = DEV ? `https://dev.woid.world/aotified/dist/main.js?ts=${Date.now()}` : `https://dev.woid.world/aotified/dist/main.js`;
+    script.defer = true;
+    head.appendChild(script);
+
+    fetchCSS();
+  });
+
+  function fetchCSS() {
     GM_xmlhttpRequest({
-      method: 'GET',
-      url: CSS_URL,
+      method: "GET",
+      url: DEV ? `https://dev.woid.world/aotified/dist/style.css?ts=${Date.now()}` : `https://dev.woid.world/aotified/dist/style.css`,
       onload(res) {
-        styleTag.textContent = res.responseText;
-        console.log('[aotified] CSS loaded');
+        const css = res.responseText;
+        styleTag && (styleTag.textContent = css);
+
+        if (!DEV) {
+          localStorage.setItem(CSS_KEY, css);
+          console.debug("[aotified.loader] CSS updated in local storage");
+        }
+
+        console.debug("[aotified.loader] CSS updated");
       },
       onerror(err) {
-        console.error('[aotified] CSS load failed', err);
+        console.error("[aotified.loader] CSS load failed", err);
       }
     });
   }
 
-  loadCSS();
-
-  const JS_URL = DEV
-    ? `https://dev.woid.world/aotified/dist/bundle.js?ts=${Date.now()}`
-    : `https://dev.woid.world/aotified/dist/bundle.js`;
-
-  const script = document.createElement('script');
-  script.src = JS_URL;
-  script.defer = true;
-  document.documentElement.appendChild(script);
-
-  if (DEV) {
-    setInterval(loadCSS, 500);
-  }
+  if (DEV) setInterval(() => {
+    fetchCSS();
+  }, 500);
 })();

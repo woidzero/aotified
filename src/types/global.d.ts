@@ -115,3 +115,10 @@ interface OverlayProps {
 
   content: OverlayContent;
 }
+
+/**
+ * SubHeadline
+ */
+interface SectionHeadingProps {
+  text: string;
+}

@@ -1,7 +1,15 @@
 import { Observer } from "../core/observer";
 import { Logger } from "../core/logger";
 
+import { Hook } from "../core/hook";
+
 import "./patcher";
+
+import type { Instance as PopperInstance } from '@popperjs/core';
+import { createPopper } from '@popperjs/core';
+
+import { SectionHeading } from "../components/SectionHeading";
+import { Overlay } from "../components/Overlay";
 
 const log = new Logger("aotified.bootstrap")
 
@@ -19,29 +27,41 @@ const $header = $("#header");
 const $nav = $("#nav");
 const $centerContent = $("#centerContent");
 const $footer = $(".footer");
+const $footerButtons = $('.footerButtons');
 const $overlay = $(".overlay")
 
 log.debug("elements found: ", [$body, $header, $nav, $centerContent, $footer, $overlay])
 
+/* -------------------------
+dom cleaner
+------------------------- */
 $header.changeTag("header");
 $nav.changeTag("nav");
-
-/* -------------------------
-  dom cleaner
-------------------------- */
 $(".clear, .adSpacer, noscript").remove();
-$("header, nav").wrapAll("<div class='pageTop'></div>");
+$("header#header, nav#nav").wrapAll("<div class='pageTop'></div>");
+
+$("body").each(function () {
+  const $root = $(this)
+  $root.addClass("aotified")
+
+  $footer
+    .add($footerButtons)
+    .wrapAll("<footer></footer>")
+
+  $($centerContent).wrapAll("<main></main>")
+})
 
 Observer("body", function () {
   const $root = $(this)
-  $root.addClass("aotified")
   $root.children("br").remove()
+}, { live: true })
 
-  $root.contents()
-    .filter(function () {
-      return this.nodeType === 8;
-    })
-    .remove();
+/**
+ * overlay patch
+ */
+Observer(".overlay", function () {
+  const $inner = $(this).find("div.content div.inner")
+  $inner.unpack();
 }, { live: true })
 
 /* -------------------------
@@ -178,7 +198,7 @@ $(".artistHeader, .albumHeader").each(function () {
   } else if ($root.is(".albumHeader")) {
     $root.attr("id", "album");
 
-    const $albumCover = $root.children(".albumTopBox.cover");
+    const $albumCover = $root.children(".albumTopBox.cover, .albumHeaderCover");
     const $albumBoxInfo = $root.children(".albumTopBox.info");
     const $albumBoxRating = $albumCover.next(".albumTopBox").addClass("ratings");
 
@@ -201,8 +221,31 @@ $(".artistHeader, .albumHeader").each(function () {
     $root.append($albumDetails);
   }
 
+  $root.find("br").remove();
   $root.replaceClass("*", "Hero");
 })
+
+/**
+ * controlsGroup wrapping
+ */
+$("div:has(> .selectRow ~ .headline ~ .filterRow), div:has(> .selectRow ~ .filterRow)").each(function () {
+  const $root = $(this);
+
+  const $selectRow = $root.children(".selectRow");
+  const $filterRow = $root.children(".filterRow");
+  const $headline = $root.children(".headline");
+
+  const $wrapper = $('<div class="controlsGroup"></div>');
+
+  if ($headline.length) {
+    $headline.after($wrapper);
+    $wrapper.append($selectRow, $filterRow);
+  } else {
+    $selectRow
+      .add($filterRow)
+      .wrapAll($wrapper)
+  }
+});
 
 // @ts-ignore
 $(".albumButton").contents().filter(function () {
@@ -212,10 +255,10 @@ $(".albumButton").contents().filter(function () {
 
 Observer(".yourRatingContainer .content", function () {
   const $root = $(this);
-  const $userButtons = $root.children(`div[style="float:right;"]`).addClass("userAreaButtons").removeAttr("style")
   const $ratingTextBoxContainer = $root.children(`.ratingTextBoxContainer`);
+  const $albumActions = $root.children(".albumActions")
 
-  $userButtons
+  $albumActions
     .add($ratingTextBoxContainer)
     .wrapAll("<div class='userArea'></div>");
 
@@ -242,22 +285,131 @@ Observer(".yourRatingContainer", function () {
   }
 })
 
-/* -------------------------
-  headings patch
-------------------------- */
+/**
+ * wrap notification rows
+ */
+$(".notificationRow",).each(function () {
+  const $row = $(this)
+  let $block = $(".aotified-group.vertical")
+
+  if (!$block.length) {
+    $block = $("<div class='aotified-group vertical'></div>")
+    $block.appendTo($row.parent())
+  }
+
+  $row.appendTo($block)
+})
+
+/**
+ * wrap log rows
+ */
+$(".logRow").each(function () {
+  const $rows = $(".logRow");
+  if (!$rows.length) return;
+
+  let $block = $(".aotified-group.vertical");
+
+  if (!$block.length) {
+    $block = $("<div class='aotified-group vertical'></div>");
+    $block.insertBefore($rows.first());
+  }
+
+  $rows.appendTo($block);
+})
+
+/**
+ * wrap log rows
+ */
+$(".thisDay").each(function () {
+  const $row = $(this)
+  let $block = $(".aotified-group")
+
+  if (!$block.length) {
+    $block = $("<div class='aotified-group'></div>")
+    $block.appendTo($row.parent())
+  }
+
+  $row.appendTo($block)
+})
+
+/**
+ * wrap log rows
+ */
+$(".userBlock").each(function () {
+  const $row = $(this)
+  let $block = $(".aotified-group#users")
+
+  if (!$block.length) {
+    $block = $("<div class='aotified-group grid grid-5x2 gap-10' id='users'></div>")
+    $block.appendTo($row.parent())
+  }
+
+  $row.appendTo($block)
+})
+
+/**
+ * removing styles from full width
+ */
+$(".fullWidth").removeAttr("style")
+
+/**
+ * mini navs wrapper
+ */
+$(".fullWidth").has(".profileAccount, .profileNav.small").replaceClass("*", "userNav");
+
+/**
+ * bottom squares panels
+ */
+$(".left").has(".fullWidth.bottomSquare").replaceClass("*", "aotified-panels");
+
+/**
+ * bottom squares wrapper
+ */
+$(".flexContainer").has(".fullWidth.bestHome, .fullWidth.anticipatedHome").replaceClass("*", "aotified-panels aotified-collections");
+
+$(".aotified-collections .fullWidth").each(function () {
+  const $root = $(this);
+
+  if ($root.is(".anticipatedHome")) {
+    $root.replaceClass("*", "aotified-panel").attr('id', "anticipated")
+    $root.children(".albumBlock").wrapAll("<div class='releaseBlock'></div>")
+  } else if ($root.is(".bestHome")) {
+    $root.replaceClass("*", "aotified-panel").attr('id', "best")
+    $root.children(".listItemSmall").replaceClass("*", "item").wrapAll("<div class='itemList small'></div>")
+  }
+
+  $root.addClass("aotified-panel")
+})
+
+/**
+ * headings wrapper
+ */
+$(".sectionHeading").each(function () {
+  $(this)
+    .contents()
+    .filter(function () {
+      // @ts-ignore
+      return (this.nodeType === 1 && /^(I|H1|H2|A)$/i.test(this.tagName)) ||
+        // @ts-ignore
+        (this.nodeType === 3 && this.nodeValue.trim() !== "");
+    })
+    .wrapAll("<hgroup></hgroup>");
+});
+
+/**
+ * rice's addon is incompatible + useless i will make my own
+ */
+Observer(".sorttracklist", function () {
+  $(this).remove()
+}, { live: true });
+
 Observer(".section", function () {
   const $section = $(this);
 
-  $section.children(".sectionHeading").each(function () {
-    $(this)
-      .children("i, h2, .viewAll, a")
-      .wrapAll("<hgroup></hgroup>");
-  });
-
   $section.find(".menuDropFloatRight").each(function () {
     const $menu = $(this);
-
     const $headings = $section.children(".sectionHeading");
+
     // @ts-ignore
     const $headingsAbove = $headings.filter(function () {
       return this.compareDocumentPosition($menu[0]) & Node.DOCUMENT_POSITION_FOLLOWING;
@@ -270,12 +422,22 @@ Observer(".section", function () {
 
     $headingsAbove.last().append($menuClone);
 
-    // $menu.remove();
     $menu.hide();
     log.debug($menu)
   });
 });
 
+/**
+ * donorbanner wrapper
+ */
+$("a").has(".donorBanner").unpack();
+$(".rightBox.donorBanner").on("click", function () {
+  window.location.href = "/subscribe/"
+})
+
+/**
+ * sort drop patch
+ */
 $("#sortDrop li").each(function () {
   const $li = $(this);
 
@@ -290,12 +452,108 @@ $("#sortDrop li").each(function () {
   }
 });
 
-/* -------------------------
-  dot drop menu patch
-------------------------- */
-import type { Instance as PopperInstance } from '@popperjs/core';
-import { createPopper } from '@popperjs/core';
+/**
+ * user dropdown
+ */
+Observer("#accountLinks", function () {
 
+})
+
+/**
+ * section group
+ */
+$(".sectionButton").wrapAll("<div class='aotified-group center'></div>")
+
+/**
+ * news group
+ */
+$(".newsBlockLarge").wrapAll("<div class='aotified-group grid grid-3x2'></div>")
+
+/**
+ * bottom groups
+ */
+$(".bottomSquare").each(function () {
+  $(this).children(".listItem").replaceClass("*", "aotified-list-item").wrapAll("<div class='aotified-list'></div>")
+})
+
+/**
+ * user review
+ */
+$(".popularHome .userReviewBlock").wrapAll("<div class='aotified-group no-wrap'></div>")
+
+$(".userReviewBlock").each(function () {
+  const $root = $(this);
+  $root.addClass("aotified-review container")
+  $root.attr("id", "user")
+
+  const $cover = $root.children(".cover");
+  const $title = $root.find("a:has(.artistTitle)");
+
+  const $reviewHeader = $("<div class='aotified-review header'></div>");
+  $reviewHeader.append($cover, $title)
+
+  const $userName = $root.children(".userName")
+  $userName.replaceClass("*", "aotified-label username small")
+
+  const $profilePic = $root.children(".profilePic")
+  $profilePic.replaceClass("*", "aotified-image pfp small")
+
+  const $ratingBlock = $root.children(".ratingBlock")
+  $ratingBlock.replaceClass("*", "aotified-rating box small")
+
+  // const $userProfile = $("<div class='aotified-review profile'></div>")
+  const $userHeader = $("<div class='aotified-review header user'></div>")
+
+  $userHeader.append($profilePic, $userName, $ratingBlock)
+  $root.prepend($reviewHeader, $userHeader)
+
+  const $reviewText = $root.children(".reviewText")
+  $reviewText.replaceClass("*", "aotified-review text small")
+
+  const $actionBlock = $reviewText.next("div")
+  $actionBlock.addClass('aotified-review actions box').removeAttr("style")
+
+  $actionBlock.children(".actionContainer").each(function () {
+    $(this).replaceClass("*", "aotified-review actions item")
+  })
+
+  $actionBlock
+    .add($reviewText)
+    .wrapAll("<div class='aotified-review body'></div>")
+
+  $root.removeClass("userReviewBlock")
+})
+
+/**
+ * search form
+ */
+Observer(".aotified-search-panel", function () {
+  const $root = $(this)
+  const $searchForm = $root.find(".searchForm")
+  $searchForm.removeClass("halfWidth large")
+
+  const $results = $root.children("#albumResults")
+  $results.addClass("releaseContainer small")
+  $results.appendTo($root)
+
+  const $div = $searchForm.children("div:last")
+
+  const $sectionHeading = $("<div class='sectionHeading'></div>")
+  const $label = $searchForm.children("label")
+  $label
+    .changeTag("h2")
+    .text("Search (Apple Music)")
+    .appendTo($sectionHeading)
+
+  $sectionHeading.prependTo($root)
+
+  $div.unpack()
+  $root.append($searchForm)
+})
+
+/**
+ * dropdowns
+ */
 let $activeMenu: JQuery<HTMLElement> | null = null;
 let activePopper: PopperInstance | null = null;
 
@@ -320,7 +578,6 @@ $(".dotDropMenuContainer, .menuDropSelected").each(function () {
   const isSortMenu = $root.hasClass("menuDropSelected");
 
   $root.on("click mouseenter mouseleave", function (e) {
-    // prevent hovering (useless)
     e.preventDefault();
     e.stopImmediatePropagation();
   });
@@ -373,22 +630,24 @@ $(".dotDropMenuContainer, .menuDropSelected").each(function () {
 $(document).on("click", closeMenu);
 $(document).on("keydown", e => { if (e.key === "Escape") closeMenu(); });
 
-/* -------------------------
-  icons instead of text
-------------------------- */
+/**
+ * icons instead of text in view all buttons
+ */
 Observer(".viewAll", function () {
   const $root = $(this);
   const $a = $root.children("a")
 
   if ($a.text().startsWith("Add")) {
-    $a.empty();
-    $a.append($("<i class='fas fa-plus'></i>"));
+    $a.empty()
+      .append($("<i class='fas fa-plus'></i>"));
+
+    $root.unpack()
   }
 })
 
-/* -------------------------
-  artist page
-------------------------- */
+/**
+ * artist page
+ */
 $("#centerContent.artist").each(function () {
   const $fullWidth = $(".fullWidth").first();
   const $header = $fullWidth.children(".Hero");
@@ -408,6 +667,9 @@ $("#centerContent.artist").each(function () {
   $fullWidth.append($artistContent);
 });
 
+/**
+ * album outputs
+ */
 Observer(
   "#albumOutput",
   function () {
@@ -460,52 +722,55 @@ Observer(
   { once: true }
 );
 
-Observer(
-  ".fullWidth",
-  function () {
-    const $root = $(this);
-    if ($root.children(".artistFooter").length) return;
-
-    const $mediaList = $root.find(".artistContent .section.mediaList");
-    const $relatedArtists = $root.find(
-      ".artistContent .section.relatedArtists"
-    );
-
-    const $footer = $("<div>", { class: "artistFooter" });
-
-    if ($mediaList.length) $footer.append($mediaList);
-    if ($relatedArtists.length) $footer.append($relatedArtists);
-
-    $root.append($footer);
-  },
-  { once: true }
-);
-
-
-Observer(".relatedArtists", function () {
+/**
+ * artist footer maker
+ */
+$(".artist .fullWidth").each(function () {
   const $root = $(this);
-  if ($root.children(".artistsBlock").length) return;
+  const $mediaList = $root.find(".section.mediaList");
+  const $relatedArtists = $root.find(".section.relatedArtists");
+
+  const $footer = $("<div>", { class: "aotified-panels" });
+
+  if ($mediaList.length) $footer.append($mediaList);
+  if ($relatedArtists.length) $footer.append($relatedArtists);
+
+  $root.append($footer);
+});
+
+/**
+ * related artists wrapper
+ */
+$(".relatedArtists").each(function () {
+  const $root = $(this);
 
   const $artistBlocks = $root.find(".artistBlock");
   if (!$artistBlocks.length) return;
 
-  const $artistsBlock = $("<div>", { class: "artistsBlock" });
+  const $group = $("<div class='aotified-group grid grid-5x2'>");
 
   $artistBlocks.each(function () {
-    $artistsBlock.append(this);
+    $group.append(this);
   });
 
-  $root.append($artistsBlock);
+  $root.append($group);
 });
 
-/* -------------------------
-  album wrapping
-------------------------- */
+/**
+ * releaseBlock maker
+ */
 Observer(
   ".anticipatedHome, .mobileScroll, #homeNewReleases, .section .mobileScroll",
   function () {
     const $root = $(this);
     const count = $root.find(".albumBlock").length;
+
+    // removing if count is 0
+    if (!count) {
+      $root.remove()
+      return;
+    }
+
     $root.addClass("releaseBlock").addClass(`count-${count}`);
   }
 );
@@ -514,6 +779,8 @@ Observer(
   ".wideLeft",
   function () {
     const $root = $(this);
+    $root.removeAttr("style")
+
     if ($root.children(".releaseBlock").length) return;
 
     requestAnimationFrame(() => {
@@ -525,8 +792,7 @@ Observer(
         .insertBefore($albums.first())
         .append($albums);
     });
-  },
-  { once: true }
+  }
 );
 
 Observer(
@@ -555,28 +821,26 @@ Observer("section", function () {
   }
 });
 
+/**
+ * album & artist score boxes
+ */
 Observer(
   ".albumCriticScoreBox, .albumUserScoreBox, .artistUserScoreBox, .artistCriticScoreBox",
   function () {
     const $box = $(this);
     if ($box.children(".ratingValue").length) return;
 
-    // wrappers
     const $ratingDetails = $("<div class='ratingDetails'>");
     const $ratingValue = $("<div class='ratingValue'>");
 
-    // move details FIRST (sibling)
     $ratingDetails.prepend($box.children(".text"));
     $box.prepend($ratingDetails);
     $box.prepend($ratingValue);
 
-    // heading
     $ratingValue.append($box.children(".heading"));
 
-    // removing
     $box.find(`[itemprop="aggregateRating"]`).unpack();
 
-    // score block
     const $ratingItem = $box.children(
       ".albumCriticScore, .albumUserScore, .artistUserScore, .artistCriticScore"
     );
@@ -586,7 +850,6 @@ Observer(
       .removeAttr("style")
       .removeClass("albumCriticScore albumUserScore artistUserScore artistCriticScore");
 
-    // extract score
     let score = "NR";
 
     const $rv = $ratingItem.find('[itemprop="ratingValue"]');
@@ -606,17 +869,14 @@ Observer(
     log.debug(score)
     $rv.remove();
 
-    // cleanup inner
     $box.find("meta, #moreStatsLink").remove();
     $ratingItem.children("a[href='#users'], a[href='#critics']").remove();
 
-    // remove floating text nodes
     $ratingItem
       .contents()
       .filter((_, node) => node.nodeType === Node.TEXT_NODE)
       .remove();
 
-    // build final ratingItem
     const $score = $("<div>", { id: "score", text: score });
     const $bar = $box.children(".ratingBar");
 
@@ -625,7 +885,6 @@ Observer(
 
     $ratingValue.append($ratingItem);
 
-    // inner texts patches
     $box.find(".text").each(function () {
       const $text = $(this);
 
@@ -640,7 +899,6 @@ Observer(
         });
       }
 
-      // "2015 / All Time" rating (only for user score box)
       if ($text.hasClass("gray") && $box.hasClass("albumUserScoreBox")) {
         $text.replaceClass("gray", "rows")
 
@@ -686,8 +944,6 @@ $(".numReviews").each(function () {
 
 Observer(".facetContent", function () {
   const $root = $(this);
-  console.debug("Observer triggered");
-
   const $albums = $root.children(".albumBlock");
 
   if ($albums.length) {
@@ -708,7 +964,7 @@ Observer("#facetContent:has(> .subHeadline)", function () {
 
   const $releaseBlock = $root
     .children("#albumOutput")
-    .addClass("releaseBlock")
+    .addClass("aotified-releases")
     .removeAttr("id");
 
   const $releaseHeaderItems = $root.children(
@@ -729,6 +985,9 @@ Observer("#facetContent:has(> .subHeadline)", function () {
   $releaseContainer.wrap("<div id='albumOutput'></div>");
 });
 
+/**
+ * check for empty sections
+ */
 Observer(".artistFooter", function () {
   const $footer = $(this);
   let hasLiveSection = false;
@@ -750,5 +1009,238 @@ Observer(".artistFooter", function () {
     $footer.remove();
   }
 });
+
+/**
+ * albumTitle split
+ */
+$(".albumTitle > a").each(function () {
+  const $a = $(this);
+
+  const text = $a.text().replace(/\s+/g, " ").trim();
+  if (!text) return;
+
+  const match = text.match(/^(.+?)\s+[–—-]\s+(.+)$/);
+
+  if (!match) return;
+
+  const artist = match[1].trim();
+  const title = match[2].trim();
+
+  if (!artist || !title) return;
+
+  $a.empty().append(
+    $("<span>", { class: "aotified-label artist", text: artist }),
+    $("<span>", { class: "aotified-label title", text: title })
+  );
+});
+
+/**
+ * user review navigation
+ */
+$(".rightBox").has(".nextAlbumReview, .prevAlbumReview").each(function () {
+  const $nav = $("<nav class='aotified-review nav'>");
+  $(this).children("a").wrapAll($nav)
+
+  const $prev = $(".prevAlbumReview")
+  $prev.replaceClass("*", "aotified-review nav item prev")
+  const $next = $(".nextAlbumReview")
+  $next.replaceClass("*", "aotified-review nav item next")
+});
+
+/***
+ * HOOKS
+ ***/
+
+/**
+ * corrections hook
+ */
+Hook("/album/corrections.php", function () {
+  $("#correctionPage").unpack();
+  $("#centerContent").addClass("correction")
+  $(".section .section:not(#credits)").replaceClass("*", "aotified-panel")
+
+  const $hero = $(".Hero")
+  const $sectionInfo = $(".section:first")
+  const $infoBox = $sectionInfo.children(".grayBox").replaceClass("*", "albumTopBox info slim").removeAttr("style")
+
+  $infoBox.appendTo($hero.find(".Hero__boxes"))
+  $sectionInfo.remove();
+});
+
+/**
+ * notifications hook
+ */
+Hook("/notifications/", function () {
+  $(".headline").filter(function () {
+    return $(this).text().trim() === "Recent Notifications";
+  }).text("Inbox");
+})
+
+/**
+ * add-cover hook
+ */
+Hook("/album/add-cover.php", function () {
+  const $root = $("#centerContent");
+  const $fullWidth = $root.children(".fullWidth")
+
+  const $hero = $root.find("#album.Hero");
+  const $title = $root.find("h1.headline");
+  const $note = $title.next("div");
+  const $searchBlock = $root.find(".searchForm");
+  const $results = $root.find("#albumResults");
+  const $uploadBox = $root.find(".addCoverBox");
+
+  const $header = $('<div class="aotified-cover-header"></div>')
+    .append($hero);
+
+  const $body = $('<div class="aotified-cover-body"></div>');
+
+  const $heading = $('<div class="aotified-heading"></div>')
+    .append($title)
+    .append($note);
+
+  const $grid = $('<div class="aotified-panels"></div>');
+
+  const $searchPanel = $('<div class="aotified-panel aotified-search-panel"></div>')
+    .append($searchBlock)
+    .append($results);
+
+  const $uploadPanel = $('<div class="aotified-panel aotified-upload-panel"></div>')
+    .append($uploadBox);
+
+  $grid
+    .append($searchPanel)
+    .append($uploadPanel);
+
+  $body
+    .append($heading)
+    .append($grid);
+
+  $fullWidth
+    .append($body)
+    .addClass("aotified-cover-card");
+
+  $root.prepend($header)
+})
+
+/**
+ * user review hook
+ */
+Hook("/user/*/album/*/", function () {
+  const $wideLeft = $(".wideLeft")
+
+  const $dotDropMenuContainer = $wideLeft.children(".dotDropMenuContainer");
+  const $albumHeadline = $wideLeft.children(".albumHeadline");
+  $albumHeadline.replaceClass("*", "aotified-review title")
+
+  const $albumTitleA = $albumHeadline.find(".albumTitle a");
+  const albumLink = $albumTitleA.attr("href")
+  $albumTitleA.unpack()
+
+  $albumHeadline.on("click", function () {
+    window.location.href = albumLink ?? "";
+  })
+  $albumHeadline.children(".albumTitle").unpack()
+
+  const $listenOn = $wideLeft.children(".listenOn")
+  $listenOn.hide();
+
+  const $reviewProfile = $wideLeft
+    .children(".userReviewHeader")
+    .replaceClass("*", "aotified-review header user")
+
+  $reviewProfile
+    .children(".content")
+    .unpack()
+
+  const $userReviewByline = $reviewProfile.children(".userReviewByline")
+  $userReviewByline.unpack();
+
+  const $profilePic = $reviewProfile.find(".image")
+  const $profilePicA = $profilePic.children("a")
+
+  const profileURL = $profilePicA.attr("href") ?? ""
+  $profilePicA.unpack();
+
+  $profilePic
+    .replaceClass("*", "aotified-image pfp medium")
+    .prependTo($reviewProfile)
+    .on("click", function () {
+      window.location.href = profileURL
+      return;
+    })
+
+  const $userName = $reviewProfile.children(".userName")
+  $userName.replaceClass("*", "aotified-label username")
+
+  const $reviewDate = $reviewProfile.children(".reviewDate")
+  $reviewDate.replaceClass("*", "aotified-label date")
+
+  const $userReviewScoreBox = $reviewProfile.children(".userReviewScoreBox")
+  $userReviewScoreBox
+    .replaceClass("*", "aotified-rating box large")
+    .children(".albumCriticScore").unpack();
+
+  const $cover = $reviewProfile.children(".cover")
+
+  const $reviewDetails = $("<div class='aotified-review details'></div>")
+
+  $userName
+    .add($reviewDate)
+    .wrapAll($reviewDetails)
+
+  $reviewDetails.append($cover)
+
+  const $reviewBody = $reviewProfile.next("div")
+  $reviewBody
+    .removeAttr("style")
+    .addClass("aotified-review body")
+
+  const $reviewText = $reviewBody.children(".userReviewText")
+  $reviewText
+    .replaceClass("*", "aotified-review text")
+    .removeAttr('itemprop')
+
+  const $reviewActions = $reviewBody.children(".albumReviewLinks")
+  $reviewActions.replaceClass('*', "aotified-review actions box")
+
+  $reviewActions.children(".review_like, .review_likes_container").wrapAll("<div class='aotified-review actions item'></div>")
+  $reviewActions.children(".flag").replaceClass("*", "aotified-review actions item")
+
+  const $sectionRelated = $(".section:has(.relatedRow)")
+  $sectionRelated.remove()
+
+  const $sectionComments = $(".section").has(".commentRow")
+  $sectionComments.replaceClass("*", "aotified-section")
+  $sectionComments.attr("id", "comments")
+
+  const $sectionTracklist = $(".section").has(".trackListTable")
+  $sectionTracklist.replaceClass("*", "aotified-section sub")
+
+  const $sectionAlbums = $("<div class='aotified-section sub'></div>");
+  $wideLeft
+    .children(".albumBlock")
+    .wrapAll("<div class='aotified-releases small'></div>");
+
+  const $releases = $wideLeft.children(".aotified-releases");
+  const $sectionHeadingAlbums = $releases.prev(".sectionHeading");
+
+  $sectionAlbums.append($sectionHeadingAlbums, $releases);
+  $wideLeft.append($sectionAlbums);
+
+  // review creation
+  const $container = $("<div class='aotified-review container'></div>")
+  const $reviewHeader = $("<div class='aotified-review header'></div>")
+
+  $reviewHeader.append($cover, $albumHeadline, $dotDropMenuContainer)
+  $container.append($wideLeft.contents())
+
+  const $review = $("<div class='aotified-review large'></div>")
+  $review.append($reviewHeader, $container)
+
+  $wideLeft
+    .append($sectionComments)
+    .prepend($review)
+})
 
 log.debug("initialized");
